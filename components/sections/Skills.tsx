@@ -10,11 +10,11 @@ const Skills = () => {
 
   useGSAP(() => {
     gsap.fromTo(".skills-heading", 
-      { y: 50, opacity: 0 },
+      { x: -100, opacity: 0 },
       { 
-        y: 0, 
+        x: 0, 
         opacity: 1, 
-        duration: 0.8, 
+        duration: 1, 
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".skills-heading",
@@ -49,7 +49,7 @@ const Skills = () => {
   return (
     <section id="skills" ref={container} className="py-32 bg-base">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <h2 className="skills-heading font-black text-[11vw] leading-none tracking-tighter uppercase mb-24 text-white">
+        <h2 className="skills-heading font-black text-[clamp(4rem,11vw,8rem)] leading-none tracking-tighter uppercase mb-24 text-white">
           SKILLS
         </h2>
 

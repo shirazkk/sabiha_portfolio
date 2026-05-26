@@ -23,17 +23,17 @@ const Hero = () => {
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative min-h-screen w-full flex flex-col items-center justify-center pt-24 pb-40 overflow-hidden">
+    <section ref={container} className="relative min-h-[100svh] w-full flex flex-col items-center justify-center pt-24 pb-40 overflow-hidden">
       {/* Background Overlays */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-neon-pink opacity-10 blur-[150px] rotate-12"></div>
       <div className="absolute bottom-0 left-0 w-1/3 h-full bg-neon-blue opacity-10 blur-[150px] -rotate-12"></div>
 
       {/* Hero Content */}
       <div className="relative z-30 text-center px-4">
-        <h1 className="font-black text-[16vw] md:text-[14vw] leading-[0.8] tracking-tighter uppercase mb-4 overflow-hidden">
+        <h1 className="font-black text-[clamp(4rem,16vw,12rem)] leading-[0.8] tracking-tighter uppercase mb-4 overflow-hidden">
           <span className="hero-word-sabiha inline-block">SABIHA</span> <span className="hero-word-aamir text-neon-pink neon-text-pink inline-block">AAMIR</span>
         </h1>
-        <p className="font-black text-lg md:text-2xl tracking-[0.3em] uppercase mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
+        <p className="font-black text-base md:text-2xl tracking-[0.3em] uppercase mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
           <span className="hero-badge bg-neon-blue px-4 py-1 text-white inline-block">
             AI CONTENT CREATOR
           </span>

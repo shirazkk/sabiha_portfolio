@@ -61,8 +61,8 @@ const Work = () => {
   return (
     <section id="work" ref={container} className="py-32 bg-base">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24">
-          <h2 className="work-heading font-black text-[11vw] leading-none tracking-tighter uppercase mb-8 md:mb-0">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+          <h2 className="work-heading font-black text-[clamp(4rem,11vw,8rem)] leading-none tracking-tighter uppercase mb-0">
             WORK
           </h2>
           <div className="flex flex-wrap gap-4">
@@ -84,33 +84,33 @@ const Work = () => {
         {/* Featured Project */}
         <div className="featured-work relative group mb-32 scale-95 opacity-0">
           <div className="absolute inset-0 clash-gradient-1 transform scale-[1.02] -rotate-1 group-hover:rotate-0 transition-all duration-700"></div>
-          <div className="relative bg-surface p-4 aspect-video flex flex-col overflow-hidden">
+          <div className="relative bg-surface p-4 flex flex-col overflow-hidden">
             <div className="flex gap-3 mb-4">
-              <div className="w-4 h-4 rounded-full bg-red-500"></div>
-              <div className="w-4 h-4 rounded-full bg-yellow-500"></div>
-              <div className="w-4 h-4 rounded-full bg-green-500"></div>
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-green-500"></div>
             </div>
-            <div className="flex-1 bg-black flex items-center justify-center relative">
+            <div className="flex-1 bg-black flex items-center justify-center relative min-h-[300px]">
               <img
                 src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000"
                 alt="Featured Work"
                 className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 opacity-70"
               />
               <div className="absolute inset-0 bg-neon-pink opacity-30 mix-blend-multiply"></div>
-              <div className="relative z-10 text-center">
-                <h3 className="font-black text-6xl md:text-8xl tracking-tighter uppercase text-white drop-shadow-2xl">
+              <div className="relative z-10 text-center px-4">
+                <h3 className="font-black text-[clamp(2.5rem,8vw,5rem)] tracking-tighter uppercase text-white drop-shadow-2xl">
                   CINEMATIC AI AD
                 </h3>
               </div>
             </div>
             <div className="py-8 flex flex-wrap gap-4">
-              <span className="bg-white text-black px-4 py-2 font-black text-xs uppercase">
+              <span className="bg-white text-black px-4 py-2 font-black text-[10px] md:text-xs uppercase">
                 COMMERCIAL VIDEO
               </span>
-              <span className="border-2 border-white px-4 py-2 font-black text-xs uppercase">
+              <span className="border-2 border-white px-4 py-2 font-black text-[10px] md:text-xs uppercase">
                 CAPCUT
               </span>
-              <span className="border-2 border-white px-4 py-2 font-black text-xs uppercase">
+              <span className="border-2 border-white px-4 py-2 font-black text-[10px] md:text-xs uppercase">
                 PROMPTING
               </span>
             </div>
@@ -118,11 +118,11 @@ const Work = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {projects.map((project, index) => (
             <div key={index} className="work-card">
               <div
-                className={`${project.color} p-1 pb-12 group transform hover:-translate-y-4 transition-all`}
+                className={`${project.color} p-1 pb-12 group transform hover:-translate-y-2 md:hover:-translate-y-4 transition-all`}
               >
                 <div className="bg-black aspect-[4/3] overflow-hidden relative">
                   <img
@@ -132,11 +132,11 @@ const Work = () => {
                   />
                   <div className={`absolute inset-0 ${project.color} opacity-20 mix-blend-overlay`}></div>
                 </div>
-                <div className="p-6">
-                  <h4 className={`font-black text-4xl uppercase tracking-tighter mb-2 ${project.textColor}`}>
+                <div className="p-4 md:p-6">
+                  <h4 className={`font-black text-2xl md:text-4xl uppercase tracking-tighter mb-2 ${project.textColor}`}>
                     {project.title}
                   </h4>
-                  <span className={`font-black text-sm uppercase px-2 ${project.tagColor}`}>
+                  <span className={`font-black text-[10px] md:text-sm uppercase px-2 ${project.tagColor}`}>
                     {project.tag}
                   </span>
                 </div>

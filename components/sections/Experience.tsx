@@ -10,11 +10,11 @@ const Experience = () => {
 
   useGSAP(() => {
     gsap.fromTo(".exp-heading", 
-      { y: 50, opacity: 0 },
+      { x: -100, opacity: 0 },
       { 
-        y: 0, 
+        x: 0, 
         opacity: 1, 
-        duration: 0.8, 
+        duration: 1, 
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".exp-heading",
@@ -88,7 +88,7 @@ const Experience = () => {
   return (
     <section id="experience" ref={container} className="py-32 bg-white text-black">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <h2 className="exp-heading font-black text-[11vw] leading-none tracking-tighter uppercase mb-24">
+        <h2 className="exp-heading font-black text-[clamp(4rem,11vw,8rem)] leading-none tracking-tighter uppercase mb-24">
           EXPERIENCE
         </h2>
         <div className="space-y-32">
