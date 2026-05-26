@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SABIHA AAMIR — AI MAXIMALIST</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        base: '#050505',
+        neonPink: '#FF1493',
+        neonBlue: '#0080FF',
+        neonGreen: '#00FF00',
+        neonGold: '#FFD700',
+        surface: '#111111',
+      },
+      animation: {
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'float': 'float 6s ease-in-out infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
+        }
+      }
+    }
+  }
+}
+</script>
+<style>
+@font-face {
+  font-family: 'Aspekta';
+  src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuFuYMZhrib2Bg-4.ttf') format('truetype');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Aspekta';
+  src: url('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuBWYMZhrib2Bg-4.ttf') format('truetype');
+  font-weight: 900;
+}
+
+* { font-family: 'Aspekta', 'Inter', sans-serif; }
+
+.noise { 
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.clash-gradient-1 { background: linear-gradient(135deg, #FF1493 0%, #0080FF 100%); }
+.clash-gradient-2 { background: linear-gradient(45deg, #00FF00 0%, #FFD700 100%); }
+.neon-glow-pink { box-shadow: 0 0 20px rgba(255, 20, 147, 0.4); }
+.neon-glow-blue { box-shadow: 0 0 20px rgba(0, 128, 255, 0.4); }
+.neon-text-pink { text-shadow: 0 0 10px rgba(255, 20, 147, 0.8); }
+
+.outline-text { -webkit-text-stroke: 1px rgba(255,255,255,0.3); color: transparent; }
+.outline-text:hover { -webkit-text-stroke: 1px #FF1493; }
+
+.cube-container { perspective: 2000px; }
+.cube {
+  width: 50vh; height: 50vh;
+  transform-style: preserve-3d;
+  animation: rotateCube 12s infinite linear;
+  position: relative;
+}
+.cube-face {
+  position: absolute; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  backface-visibility: hidden;
+  border: 4px solid white;
+}
+.cube-face:nth-child(1) { background: #FF1493; transform: rotateX(0deg) translateZ(25vh); border-color: #00FF00; }
+.cube-face:nth-child(2) { background: #0080FF; transform: rotateX(90deg) translateZ(25vh); border-color: #FFD700; }
+.cube-face:nth-child(3) { background: #00FF00; transform: rotateX(180deg) translateZ(25vh); border-color: #FF1493; }
+.cube-face:nth-child(4) { background: #FFD700; transform: rotateX(270deg) translateZ(25vh); border-color: #0080FF; }
+
+@keyframes rotateCube {
+  from { transform: rotateX(0deg) rotateY(0deg); }
+  to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.mix-blend-exclusion { mix-blend-mode: exclusion; }
+
+html { scroll-behavior: smooth; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #FF1493; }
+
+.asymmetric-item:nth-child(even) { transform: translateY(40px); }
+
+@view-transition {
+  navigation: auto;
+}
+</style>
+</head>
+<body class="bg-base text-white overflow-x-hidden">
+<div class="noise"></div>
+
+<div class="min-h-screen relative flex flex-col">
+
+<!-- NAVBAR -->
+<nav class="fixed top-0 left-0 w-full z-[100] px-6 lg:px-12 py-6 mix-blend-exclusion">
+  <div class="flex items-center justify-between border-b-2 border-white pb-4">
+    <div class="flex items-center gap-4">
+      <span class="font-black text-2xl tracking-tighter uppercase leading-none" id="nav-logo">SABIHA AAMIR</span>
+      <span class="w-4 h-4 rounded-full bg-neonGreen animate-pulse shadow-[0_0_15px_#00FF00]"></span>
+    </div>
+    <div class="hidden md:flex items-center gap-12 font-black text-sm tracking-widest uppercase">
+      <a id="nav-about-link" href="#about" class="hover:text-neonPink transition-all duration-300">ABOUT</a>
+      <a id="nav-work-link" href="#work" class="hover:text-neonBlue transition-all duration-300">WORK</a>
+      <a id="nav-skills-link" href="#skills" class="hover:text-neonGreen transition-all duration-300">SKILLS</a>
+      <a id="nav-contact-link" href="#contact" class="hover:text-neonGold transition-all duration-300">CONTACT</a>
+    </div>
+    <a id="nav-hire-btn" href="#contact" class="bg-white text-black px-8 py-3 font-black text-sm uppercase tracking-widest hover:bg-neonPink hover:text-white transition-all transform hover:-translate-y-1 active:translate-y-0">
+      HIRE ME
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-screen w-full flex flex-col items-center justify-center pt-24 pb-40 overflow-hidden">
+  <!-- Background Overlays -->
+  <div class="absolute top-0 right-0 w-1/2 h-full bg-neonPink opacity-10 blur-[150px] rotate-12"></div>
+  <div class="absolute bottom-0 left-0 w-1/3 h-full bg-neonBlue opacity-10 blur-[150px] -rotate-12"></div>
+
+
+
+  <!-- 3D Cube Hero -->
+  <div class="cube-container z-20 mb-[-100px] transform scale-75 md:scale-100">
+    <div class="cube">
+      <div class="cube-face"><span class="text-black text-4xl font-black uppercase tracking-tighter">AI VIDEO</span></div>
+      <div class="cube-face"><span class="text-white text-4xl font-black uppercase tracking-tighter">INFLUENCER</span></div>
+      <div class="cube-face"><span class="text-black text-4xl font-black uppercase tracking-tighter">BRANDING</span></div>
+      <div class="cube-face"><span class="text-black text-4xl font-black uppercase tracking-tighter">PROMPT</span></div>
+    </div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-30 text-center px-4">
+    <h1 class="font-black text-[16vw] md:text-[14vw] leading-[0.8] tracking-tighter uppercase mb-4">
+      SABIHA <span class="text-neonPink neon-text-pink">AAMIR</span>
+    </h1>
+    <p class="font-black text-lg md:text-2xl tracking-[0.3em] uppercase mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
+      <span class="bg-neonBlue px-4 py-1 text-white">AI CONTENT CREATOR</span>
+      <span class="hidden md:block">/</span>
+      <span class="bg-neonGreen px-4 py-1 text-black">PROMPT ENGINEER</span>
+    </p>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a id="hero-work-btn" href="#work" class="clash-gradient-1 px-12 py-5 font-black text-xl uppercase tracking-widest text-white shadow-[8px_8px_0px_#FFFFFF] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all">
+        VIEW WORK
+      </a>
+      <a id="hero-hire-btn-main" href="#contact" class="bg-white text-black px-12 py-5 font-black text-xl uppercase tracking-widest shadow-[8px_8px_0px_#FF1493] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all">
+        HIRE ME
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-10 flex flex-col items-center gap-2 animate-bounce">
+    <span class="font-black text-xs tracking-widest uppercase text-neonGold">SCROLL DOWN</span>
+    <iconify-icon icon="lucide:arrow-down" class="text-2xl text-neonGold"></iconify-icon>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-32 relative bg-white text-black">
+  <div class="absolute -top-20 right-20 z-10">
+    <h2 class="font-black text-[11vw] leading-none tracking-tighter uppercase text-neonPink mix-blend-difference">ABOUT</h2>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16">
+    <div class="lg:col-span-7 flex flex-col justify-center">
+      <div class="relative">
+        <p class="font-black text-3xl md:text-5xl leading-tight tracking-tighter uppercase mb-12">
+          I build <span class="bg-black text-white px-3">cinematic</span> digital universes using <span class="underline decoration-neonPink decoration-8 underline-offset-8">advanced AI tools</span> and modern workflows.
+        </p>
+        <p class="text-xl font-medium leading-relaxed mb-8 border-l-8 border-neonBlue pl-8">
+          Currently mastering Artificial Intelligence at KFUEIT. Bridging the gap between raw code and visual storytelling. Passionate about media automation and future digital aesthetics.
+        </p>
+        <p class="font-black text-2xl uppercase tracking-tighter flex flex-wrap gap-4">
+          <span class="text-neonBlue">FREELANCE</span> • <span class="text-neonPink">BRAND COLLAB</span> • <span class="text-neonGreen">REMOTE</span>
+        </p>
+      </div>
+    </div>
+    <div class="lg:col-span-5 grid grid-cols-1 gap-4">
+      <div class="bg-black text-white p-10 transform -rotate-3 hover:rotate-0 transition-all">
+        <div class="text-7xl font-black text-neonGreen mb-2">2+</div>
+        <div class="font-black text-sm uppercase tracking-widest">YEARS EXPERIENCE</div>
+      </div>
+      <div class="bg-neonPink text-white p-10 transform rotate-2 hover:rotate-0 transition-all">
+        <div class="text-7xl font-black text-white mb-2">10+</div>
+        <div class="font-black text-sm uppercase tracking-widest">PROJECTS COMPLETED</div>
+      </div>
+      <div class="bg-neonBlue text-white p-10 transform -rotate-1 hover:rotate-0 transition-all">
+        <div class="text-7xl font-black text-neonGold mb-2">OPEN</div>
+        <div class="font-black text-sm uppercase tracking-widest">TO WORK</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work" class="py-32 bg-base">
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-24">
+      <h2 class="font-black text-[11vw] leading-none tracking-tighter uppercase mb-8 md:mb-0">WORK</h2>
+      <div class="flex flex-wrap gap-4">
+        <button class="px-6 py-2 border-4 border-white text-white font-black uppercase text-sm tracking-widest bg-white text-black">ALL</button>
+        <button class="px-6 py-2 border-4 border-white text-white font-black uppercase text-sm tracking-widest hover:bg-neonPink hover:border-neonPink transition-all">AI VIDEO</button>
+        <button class="px-6 py-2 border-4 border-white text-white font-black uppercase text-sm tracking-widest hover:bg-neonBlue hover:border-neonBlue transition-all">INFLUENCER</button>
+        <button class="px-6 py-2 border-4 border-white text-white font-black uppercase text-sm tracking-widest hover:bg-neonGreen hover:border-neonGreen transition-all">BRAND</button>
+      </div>
+    </div>
+
+    <!-- Featured -->
+    <div class="relative group mb-32">
+      <div class="absolute inset-0 clash-gradient-1 transform scale-[1.02] -rotate-1 group-hover:rotate-0 transition-all duration-700"></div>
+      <div class="relative bg-surface p-4 aspect-video flex flex-col overflow-hidden">
+         <div class="flex gap-3 mb-4">
+           <div class="w-4 h-4 rounded-full bg-red-500"></div>
+           <div class="w-4 h-4 rounded-full bg-yellow-500"></div>
+           <div class="w-4 h-4 rounded-full bg-green-500"></div>
+         </div>
+         <div class="flex-1 bg-black flex items-center justify-center relative">
+           <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000')] bg-cover bg-center grayscale filter contrast-125 group-hover:grayscale-0 transition-all duration-1000"></div>
+           <div class="absolute inset-0 bg-neonPink opacity-30 mix-blend-multiply"></div>
+           <div class="relative z-10 text-center">
+             <h3 class="font-black text-6xl md:text-8xl tracking-tighter uppercase text-white drop-shadow-2xl">CINEMATIC AI AD</h3>
+           </div>
+         </div>
+         <div class="py-8 flex flex-wrap gap-4">
+           <span class="bg-white text-black px-4 py-2 font-black text-xs uppercase">COMMERCIAL VIDEO</span>
+           <span class="border-2 border-white px-4 py-2 font-black text-xs uppercase">CAPCUT</span>
+           <span class="border-2 border-white px-4 py-2 font-black text-xs uppercase">PROMPTING</span>
+         </div>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="asymmetric-item">
+        <div class="bg-neonBlue p-1 pb-12 group transform hover:-translate-y-4 transition-all">
+          <div class="bg-black aspect-[4/3] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1000" alt="Work" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <div class="absolute inset-0 bg-neonBlue opacity-20 mix-blend-overlay"></div>
+          </div>
+          <div class="p-6">
+            <h4 class="font-black text-4xl uppercase tracking-tighter mb-2 text-white">AI INFLUENCER ZARA</h4>
+            <span class="font-black text-sm uppercase text-black bg-white px-2">CHARACTER DESIGN</span>
+          </div>
+        </div>
+      </div>
+      <div class="asymmetric-item">
+        <div class="bg-neonGreen p-1 pb-12 group transform hover:-translate-y-4 transition-all">
+          <div class="bg-black aspect-[4/3] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=1000" alt="Work" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <div class="absolute inset-0 bg-neonGreen opacity-20 mix-blend-overlay"></div>
+          </div>
+          <div class="p-6">
+            <h4 class="font-black text-4xl uppercase tracking-tighter mb-2 text-black">REELS — ORGANIC & PURE</h4>
+            <span class="font-black text-sm uppercase text-white bg-black px-2">SHORT-FORM</span>
+          </div>
+        </div>
+      </div>
+      <div class="asymmetric-item">
+        <div class="bg-neonGold p-1 pb-12 group transform hover:-translate-y-4 transition-all">
+          <div class="bg-black aspect-[4/3] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000" alt="Work" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <div class="absolute inset-0 bg-neonGold opacity-20 mix-blend-overlay"></div>
+          </div>
+          <div class="p-6">
+            <h4 class="font-black text-4xl uppercase tracking-tighter mb-2 text-black">AI BRAND IDENTITY</h4>
+            <span class="font-black text-sm uppercase text-white bg-black px-2">VISUALS</span>
+          </div>
+        </div>
+      </div>
+      <div class="asymmetric-item">
+        <div class="bg-neonPink p-1 pb-12 group transform hover:-translate-y-4 transition-all">
+          <div class="bg-black aspect-[4/3] overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=1000" alt="Work" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+            <div class="absolute inset-0 bg-neonPink opacity-20 mix-blend-overlay"></div>
+          </div>
+          <div class="p-6">
+            <h4 class="font-black text-4xl uppercase tracking-tighter mb-2 text-white">AD SCRIPT WRITING</h4>
+            <span class="font-black text-sm uppercase text-black bg-white px-2">STORYTELLING</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="py-32 bg-white text-black">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <h2 class="font-black text-[11vw] leading-none tracking-tighter uppercase mb-24">EXPERIENCE</h2>
+    <div class="space-y-32">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 group">
+        <div class="md:col-span-4">
+          <div class="bg-black text-white p-6 inline-block font-black text-xl uppercase mb-4 group-hover:bg-neonPink transition-colors">MAY 2026 – NOW</div>
+          <p class="font-black text-sm tracking-widest uppercase">ORGANIC AND PURE</p>
+        </div>
+        <div class="md:col-span-8">
+          <h3 class="font-black text-5xl md:text-7xl leading-[0.9] tracking-tighter uppercase mb-8 group-hover:text-neonPink transition-colors">PROMPT <br> ENGINEER</h3>
+          <ul class="space-y-4 text-xl font-bold uppercase tracking-tight">
+            <li class="flex gap-4">— AI-Powered Commercial Production</li>
+            <li class="flex gap-4">— Emotional Marketing Scripts</li>
+            <li class="flex gap-4">— Character Consistency Systems</li>
+            <li class="flex gap-4">— Short-Form Retention Content</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 group">
+        <div class="md:col-span-4">
+          <div class="bg-black text-white p-6 inline-block font-black text-xl uppercase mb-4 group-hover:bg-neonBlue transition-colors">JAN 2026 – NOW</div>
+          <p class="font-black text-sm tracking-widest uppercase">SELF-EMPLOYED</p>
+        </div>
+        <div class="md:col-span-8">
+          <h3 class="font-black text-5xl md:text-7xl leading-[0.9] tracking-tighter uppercase mb-8 group-hover:text-neonBlue transition-colors">AI VIDEO <br> EDITOR</h3>
+          <ul class="space-y-4 text-xl font-bold uppercase tracking-tight">
+            <li class="flex gap-4">— Commercial AI-Generated Content</li>
+            <li class="flex gap-4">— Consistent Character Design</li>
+            <li class="flex gap-4">— Cinematic AI Reels</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-32 bg-base">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <h2 class="font-black text-[11vw] leading-none tracking-tighter uppercase mb-24 text-white">SKILLS</h2>
+    
+    <div class="space-y-20">
+      <div>
+        <h3 class="font-black text-xl text-neonPink uppercase tracking-[0.3em] mb-12">// CORE TECHNOLOGIES</h3>
+        <div class="flex flex-wrap gap-6">
+          <span class="bg-neonPink text-white px-8 py-4 font-black text-2xl uppercase transform -rotate-2 hover:rotate-0 transition-all">Prompt Engineering</span>
+          <span class="bg-neonBlue text-white px-8 py-4 font-black text-2xl uppercase transform rotate-1 hover:rotate-0 transition-all">AI Video Gen</span>
+          <span class="bg-neonGreen text-black px-8 py-4 font-black text-2xl uppercase transform rotate-3 hover:rotate-0 transition-all">Visual Storytelling</span>
+          <span class="bg-white text-black px-8 py-4 font-black text-2xl uppercase transform -rotate-1 hover:rotate-0 transition-all">AI Automation</span>
+          <span class="bg-neonGold text-black px-8 py-4 font-black text-2xl uppercase transform rotate-2 hover:rotate-0 transition-all">Hook-Based Edits</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-20">
+        <div class="flex-1">
+           <h3 class="font-black text-xl text-neonBlue uppercase tracking-[0.3em] mb-12">// THE STACK</h3>
+           <div class="flex flex-wrap gap-4">
+             <span class="border-4 border-white text-white px-6 py-3 font-black text-lg uppercase">ChatGPT</span>
+             <span class="border-4 border-neonPink text-neonPink px-6 py-3 font-black text-lg uppercase">CapCut</span>
+             <span class="border-4 border-neonGreen text-neonGreen px-6 py-3 font-black text-lg uppercase">Midjourney</span>
+             <span class="border-4 border-neonGold text-neonGold px-6 py-3 font-black text-lg uppercase">Luma Dream</span>
+           </div>
+        </div>
+        <div class="flex-1">
+           <h3 class="font-black text-xl text-neonGreen uppercase tracking-[0.3em] mb-12">// LANGUAGES</h3>
+           <div class="flex flex-wrap gap-4">
+             <span class="bg-white text-black px-8 py-4 font-black text-xl uppercase">English — PRO</span>
+             <span class="bg-white text-black px-8 py-4 font-black text-xl uppercase">Urdu — NATIVE</span>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-32 bg-neonBlue overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <h2 class="font-black text-[11vw] leading-none tracking-tighter uppercase mb-24 text-black">SERVICES</h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 border-8 border-black shadow-[20px_20px_0px_#000000]">
+      <div class="bg-white p-12 flex flex-col border-b-8 lg:border-b-0 lg:border-r-8 border-black">
+        <h3 class="font-black text-4xl uppercase mb-4 text-black">FREELANCE</h3>
+        <p class="font-bold uppercase text-neonPink mb-12">SINGLE PROJECTS</p>
+        <ul class="space-y-4 mb-12 flex-1 font-black uppercase text-lg">
+          <li>— AI VIDEO</li>
+          <li>— REELS</li>
+          <li>— CAPTIONS</li>
+          <li>— HOOK EDITS</li>
+        </ul>
+        <a id="service-freelance-btn" href="#contact" class="bg-black text-white px-8 py-4 text-center font-black uppercase hover:bg-neonPink transition-all">BOOK NOW</a>
+      </div>
+
+      <div class="bg-black p-12 flex flex-col border-b-8 lg:border-b-0 lg:border-r-8 border-black scale-y-105 z-10">
+        <h3 class="font-black text-4xl uppercase mb-4 text-white">FULL <br> SERVICE</h3>
+        <p class="font-bold uppercase text-neonGreen mb-12">COMPLETE PRODUCTION</p>
+        <ul class="space-y-4 mb-12 flex-1 font-black uppercase text-lg text-white">
+          <li class="text-neonGreen">+ AI PRODUCTION</li>
+          <li class="text-neonGreen">+ AD SCRIPTS</li>
+          <li class="text-neonGreen">+ BRAND IDENTITY</li>
+          <li class="text-neonGreen">+ AUTOMATION</li>
+          <li class="text-neonGreen">+ STRATEGY</li>
+        </ul>
+        <a id="service-full-btn" href="#contact" class="bg-neonGreen text-black px-8 py-4 text-center font-black uppercase hover:bg-white transition-all">GET IT ALL</a>
+      </div>
+
+      <div class="bg-white p-12 flex flex-col">
+        <h3 class="font-black text-4xl uppercase mb-4 text-black">BRAND <br> COLLAB</h3>
+        <p class="font-bold uppercase text-neonBlue mb-12">PARTNERSHIPS</p>
+        <ul class="space-y-4 mb-12 flex-1 font-black uppercase text-lg">
+          <li>— AD SCRIPTS</li>
+          <li>— INFLUENCER</li>
+          <li>— SYSTEMS</li>
+        </ul>
+        <a id="service-collab-btn" href="#contact" class="bg-black text-white px-8 py-4 text-center font-black uppercase hover:bg-neonBlue transition-all">PARTNER UP</a>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="py-32 bg-base">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <h2 class="font-black text-[11vw] leading-none tracking-tighter uppercase mb-24 text-white">EDUCATION</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+       <div class="bg-surface p-12 border-l-[16px] border-neonPink">
+         <h3 class="font-black text-4xl uppercase mb-6 leading-[1]">BACHELOR'S <br> IN AI</h3>
+         <p class="text-xl font-bold text-gray-400 mb-8 uppercase tracking-tighter">KFUEIT — UNIVERSITY</p>
+         <span class="bg-neonPink text-white px-4 py-2 font-black text-sm uppercase">2024 — 2028</span>
+       </div>
+       <div class="bg-surface p-12 border-l-[16px] border-neonBlue">
+         <h3 class="font-black text-4xl uppercase mb-6 leading-[1]">HIGH SCHOOL <br> DIPLOMA</h3>
+         <p class="text-xl font-bold text-gray-400 mb-8 uppercase tracking-tighter">GOVT SECONDARY</p>
+         <span class="bg-neonBlue text-white px-4 py-2 font-black text-sm uppercase">2021 — 2023</span>
+       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-48 bg-white text-black relative">
+  <div class="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/diagonal-stripes.png')]"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center relative z-10">
+    <h2 class="font-black text-[10vw] leading-[0.85] tracking-tighter uppercase mb-4">LET'S <span class="outline-text">CREATE</span></h2>
+    <h2 class="font-black text-[10vw] leading-[0.85] tracking-tighter uppercase mb-16">
+      SOMETHING <span class="text-neonPink">CINEMATIC</span>
+    </h2>
+    <p class="text-3xl font-black uppercase tracking-tighter mb-16">Ready for the next digital evolution?</p>
+    
+    <div class="flex flex-wrap justify-center gap-8">
+       <a id="contact-email" href="mailto:sabihaaamir2@gmail.com" class="bg-black text-white px-12 py-6 font-black text-2xl uppercase tracking-widest hover:bg-neonPink transition-all transform hover:-translate-y-2">EMAIL ME</a>
+       <a id="contact-linkedin" href="https://linkedin.com/in/sabihaaamir" target="_blank" class="border-8 border-black px-12 py-6 font-black text-2xl uppercase tracking-widest hover:bg-neonBlue hover:border-neonBlue hover:text-white transition-all transform hover:-translate-y-2">LINKEDIN</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-black py-24 px-6 lg:px-12">
+  <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between border-t-4 border-white pt-12 gap-12">
+    <div class="font-black text-4xl uppercase tracking-tighter">SABIHA <span class="text-neonPink">AAMIR</span></div>
+    <div class="flex gap-12 font-black text-sm uppercase tracking-widest">
+       <a id="footer-linkedin" href="#" class="hover:text-neonBlue transition-all">LINKEDIN</a>
+       <a id="footer-instagram" href="#" class="hover:text-neonPink transition-all">INSTAGRAM</a>
+       <a id="footer-behance" href="#" class="hover:text-neonGreen transition-all">BEHANCE</a>
+    </div>
+    <div class="text-gray-500 font-bold uppercase tracking-widest">© 2026 AI VISIONARY</div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+// Add scroll animations and interactivity
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
+</body>
+</html>
