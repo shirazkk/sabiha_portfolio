@@ -1,6 +1,62 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Experience = () => {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.fromTo(".exp-heading", 
+      { y: 50, opacity: 0 },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 0.8, 
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".exp-heading",
+          start: "top 85%",
+        }
+      }
+    );
+
+    const blocks = container.current?.querySelectorAll(".exp-block");
+
+    blocks?.forEach((block, index) => {
+      gsap.fromTo(block, 
+        { x: index % 2 === 0 ? -100 : 100, opacity: 0 },
+        { 
+          x: 0, 
+          opacity: 1, 
+          duration: 1, 
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: block,
+            start: "top 85%",
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray<HTMLElement>(".role-title").forEach((title) => {
+      gsap.fromTo(title,
+        { clipPath: "inset(0 100% 0 0)" },
+        {
+          clipPath: "inset(0 0% 0 0)",
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: title,
+            start: "top 85%",
+          }
+        }
+      );
+    });
+  }, { scope: container });
+
   const experiences = [
     {
       date: "MAY 2026 – NOW",
@@ -30,14 +86,14 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-32 bg-white text-black">
+    <section id="experience" ref={container} className="py-32 bg-white text-black">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <h2 className="font-black text-[11vw] leading-none tracking-tighter uppercase mb-24">
+        <h2 className="exp-heading font-black text-[11vw] leading-none tracking-tighter uppercase mb-24">
           EXPERIENCE
         </h2>
         <div className="space-y-32">
           {experiences.map((exp, index) => (
-            <div key={index} className="grid grid-cols-1 md:grid-cols-12 gap-12 group">
+            <div key={index} className="exp-block grid grid-cols-1 md:grid-cols-12 gap-12 group">
               <div className="md:col-span-4">
                 <div className={`bg-black text-white p-6 inline-block font-black text-xl uppercase mb-4 transition-colors ${exp.bgColor}`}>
                   {exp.date}
@@ -46,8 +102,8 @@ const Experience = () => {
                   {exp.company}
                 </p>
               </div>
-              <div className="md:col-span-8">
-                <h3 className={`font-black text-5xl md:text-7xl leading-[0.9] tracking-tighter uppercase mb-8 transition-colors ${exp.color}`}>
+              <div className="md:col-span-8 overflow-hidden">
+                <h3 className={`role-title font-black text-5xl md:text-7xl leading-[0.9] tracking-tighter uppercase mb-8 transition-colors ${exp.color}`}>
                   {exp.role.split(" ").map((word, i) => (
                     <React.Fragment key={i}>
                       {word} {i === 0 && <br />}

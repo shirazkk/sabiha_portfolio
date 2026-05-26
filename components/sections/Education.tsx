@@ -1,10 +1,33 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Education = () => {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.fromTo(".edu-heading", 
+      { y: 50, opacity: 0 },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 0.8, 
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".edu-heading",
+          start: "top 85%",
+        }
+      }
+    );
+  }, { scope: container });
+
   return (
-    <section id="education" className="py-32 bg-base">
+    <section id="education" ref={container} className="py-32 bg-base">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <h2 className="font-black text-[11vw] leading-none tracking-tighter uppercase mb-24 text-white">
+        <h2 className="edu-heading font-black text-[11vw] leading-none tracking-tighter uppercase mb-24 text-white">
           EDUCATION
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

@@ -1,7 +1,28 @@
-import React from "react";
-import Image from "next/image";
+"use client";
+
+import React, { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Work = () => {
+  const container = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.set(".work-card", { y: 80, opacity: 0 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 85%",
+      },
+    });
+
+    tl.fromTo(".work-heading", { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power3.out" })
+      .to(".featured-work", { scale: 1, opacity: 1, duration: 0.8 }, "-=0.5")
+      .to(".work-card", { y: 0, opacity: 1, stagger: 0.15, duration: 0.6 }, "-=0.4");
+  }, { scope: container });
+
   const projects = [
     {
       title: "AI INFLUENCER ZARA",
@@ -38,10 +59,10 @@ const Work = () => {
   ];
 
   return (
-    <section id="work" className="py-32 bg-base">
+    <section id="work" ref={container} className="py-32 bg-base">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-24">
-          <h2 className="font-black text-[11vw] leading-none tracking-tighter uppercase mb-8 md:mb-0">
+          <h2 className="work-heading font-black text-[11vw] leading-none tracking-tighter uppercase mb-8 md:mb-0">
             WORK
           </h2>
           <div className="flex flex-wrap gap-4">
@@ -61,7 +82,7 @@ const Work = () => {
         </div>
 
         {/* Featured Project */}
-        <div className="relative group mb-32">
+        <div className="featured-work relative group mb-32 scale-95 opacity-0">
           <div className="absolute inset-0 clash-gradient-1 transform scale-[1.02] -rotate-1 group-hover:rotate-0 transition-all duration-700"></div>
           <div className="relative bg-surface p-4 aspect-video flex flex-col overflow-hidden">
             <div className="flex gap-3 mb-4">
@@ -99,7 +120,7 @@ const Work = () => {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {projects.map((project, index) => (
-            <div key={index} className="asymmetric-item">
+            <div key={index} className="work-card">
               <div
                 className={`${project.color} p-1 pb-12 group transform hover:-translate-y-4 transition-all`}
               >
