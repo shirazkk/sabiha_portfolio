@@ -25,15 +25,15 @@ const Hero = () => {
   return (
     <section ref={container} className="relative min-h-[100svh] w-full flex flex-col items-center justify-center pt-24 pb-40 overflow-hidden">
       {/* Background Overlays */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-neon-pink opacity-10 blur-[150px] rotate-12"></div>
-      <div className="absolute bottom-0 left-0 w-1/3 h-full bg-neon-blue opacity-10 blur-[150px] -rotate-12"></div>
+      <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-neon-pink opacity-10 blur-[150px] rotate-12"></div>
+      <div className="absolute bottom-0 left-0 w-full md:w-1/3 h-full bg-neon-blue opacity-10 blur-[150px] -rotate-12"></div>
 
       {/* Hero Content */}
-      <div className="relative z-30 text-center px-4">
-        <h1 className="font-black text-[clamp(4rem,16vw,12rem)] leading-[0.8] tracking-tighter uppercase mb-4 overflow-hidden">
+      <div className="relative z-30 text-center px-4 w-full max-w-[100vw] overflow-hidden">
+        <h1 className="font-black text-[clamp(2.5rem,14vw,12rem)] leading-[0.8] tracking-tighter uppercase mb-4 overflow-hidden">
           <span className="hero-word-sabiha inline-block">SABIHA</span> <span className="hero-word-aamir text-neon-pink neon-text-pink inline-block">AAMIR</span>
         </h1>
-        <p className="font-black text-base md:text-2xl tracking-[0.3em] uppercase mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
+        <p className="font-black text-sm md:text-2xl tracking-[0.2em] md:tracking-[0.3em] uppercase mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
           <span className="hero-badge bg-neon-blue px-4 py-1 text-white inline-block">
             AI CONTENT CREATOR
           </span>
@@ -42,16 +42,16 @@ const Hero = () => {
             PROMPT ENGINEER
           </span>
         </p>
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="flex flex-col sm:flex-row justify-center gap-6 px-4">
           <a
             href="#work"
-            className="hero-cta clash-gradient-1 px-12 py-5 font-black text-xl uppercase tracking-widest text-white shadow-[8px_8px_0px_#FFFFFF] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all inline-block"
+            className="hero-cta clash-gradient-1 px-8 md:px-12 py-4 md:py-5 font-black text-lg md:text-xl uppercase tracking-widest text-white shadow-[8px_8px_0px_#FFFFFF] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all inline-block"
           >
             VIEW WORK
           </a>
           <a
             href="#contact"
-            className="hero-cta bg-white text-black px-12 py-5 font-black text-xl uppercase tracking-widest shadow-[8px_8px_0px_#FF1493] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all inline-block"
+            className="hero-cta bg-white text-black px-8 md:px-12 py-4 md:py-5 font-black text-lg md:text-xl uppercase tracking-widest shadow-[8px_8px_0px_#FF1493] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all inline-block"
           >
             HIRE ME
           </a>

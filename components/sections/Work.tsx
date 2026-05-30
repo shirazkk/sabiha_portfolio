@@ -15,6 +15,7 @@ const Work = () => {
       scrollTrigger: {
         trigger: container.current,
         start: "top 85%",
+        toggleActions: "play none none reverse",
       },
     });
 
@@ -59,38 +60,38 @@ const Work = () => {
   ];
 
   return (
-    <section id="work" ref={container} className="py-32 bg-base">
+    <section id="work" ref={container} className="py-20 md:py-32 bg-base overflow-hidden">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
-          <h2 className="work-heading font-black text-[clamp(4rem,11vw,8rem)] leading-none tracking-tighter uppercase mb-0">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 md:mb-24 gap-8">
+          <h2 className="work-heading font-black text-[clamp(2.5rem,10vw,8rem)] leading-none tracking-tighter uppercase mb-0">
             WORK
           </h2>
-          <div className="flex flex-wrap gap-4">
-            <button className="px-6 py-2 border-4 border-white font-black uppercase text-sm tracking-widest bg-white text-black">
+          <div className="flex flex-wrap gap-3 md:gap-4">
+            <button className="px-4 md:px-6 py-2 border-2 md:border-4 border-white font-black uppercase text-xs md:text-sm tracking-widest bg-white text-black transition-all">
               ALL
             </button>
-            <button className="px-6 py-2 border-4 border-white text-white font-black uppercase text-sm tracking-widest hover:bg-neon-pink hover:border-neon-pink transition-all">
+            <button className="px-4 md:px-6 py-2 border-2 md:border-4 border-white text-white font-black uppercase text-xs md:text-sm tracking-widest hover:bg-neon-pink hover:border-neon-pink transition-all">
               AI VIDEO
             </button>
-            <button className="px-6 py-2 border-4 border-white text-white font-black uppercase text-sm tracking-widest hover:bg-neon-blue hover:border-neon-blue transition-all">
+            <button className="px-4 md:px-6 py-2 border-2 md:border-4 border-white text-white font-black uppercase text-xs md:text-sm tracking-widest hover:bg-neon-blue hover:border-neon-blue transition-all">
               INFLUENCER
             </button>
-            <button className="px-6 py-2 border-4 border-white text-white font-black uppercase text-sm tracking-widest hover:bg-neon-green hover:border-neon-green transition-all">
+            <button className="px-4 md:px-6 py-2 border-2 md:border-4 border-white text-white font-black uppercase text-xs md:text-sm tracking-widest hover:bg-neon-green hover:border-neon-green transition-all">
               BRAND
             </button>
           </div>
         </div>
 
         {/* Featured Project */}
-        <div className="featured-work relative group mb-32 scale-95 opacity-0">
-          <div className="absolute inset-0 clash-gradient-1 transform scale-[1.02] -rotate-1 group-hover:rotate-0 transition-all duration-700"></div>
-          <div className="relative bg-surface p-4 flex flex-col overflow-hidden">
-            <div className="flex gap-3 mb-4">
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-green-500"></div>
+        <div className="featured-work relative group mb-20 md:mb-32 scale-95 opacity-0">
+          <div className="absolute inset-0 clash-gradient-1 transform scale-[1.01] md:scale-[1.02] -rotate-1 group-hover:rotate-0 transition-all duration-700"></div>
+          <div className="relative bg-surface p-2 md:p-4 flex flex-col overflow-hidden">
+            <div className="flex gap-2 md:gap-3 mb-4">
+              <div className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-red-500"></div>
+              <div className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-yellow-500"></div>
+              <div className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-green-500"></div>
             </div>
-            <div className="flex-1 bg-black flex items-center justify-center relative min-h-[300px]">
+            <div className="flex-1 bg-black flex items-center justify-center relative min-h-[250px] md:min-h-[400px]">
               <img
                 src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000"
                 alt="Featured Work"
@@ -98,19 +99,19 @@ const Work = () => {
               />
               <div className="absolute inset-0 bg-neon-pink opacity-30 mix-blend-multiply"></div>
               <div className="relative z-10 text-center px-4">
-                <h3 className="font-black text-[clamp(2.5rem,8vw,5rem)] tracking-tighter uppercase text-white drop-shadow-2xl">
+                <h3 className="font-black text-[clamp(2rem,7vw,5rem)] tracking-tighter uppercase text-white drop-shadow-2xl">
                   CINEMATIC AI AD
                 </h3>
               </div>
             </div>
-            <div className="py-8 flex flex-wrap gap-4">
-              <span className="bg-white text-black px-4 py-2 font-black text-[10px] md:text-xs uppercase">
+            <div className="py-6 md:py-8 flex flex-wrap gap-2 md:gap-4">
+              <span className="bg-white text-black px-3 md:px-4 py-1.5 md:py-2 font-black text-[10px] md:text-xs uppercase">
                 COMMERCIAL VIDEO
               </span>
-              <span className="border-2 border-white px-4 py-2 font-black text-[10px] md:text-xs uppercase">
+              <span className="border-2 border-white px-3 md:px-4 py-1.5 md:py-2 font-black text-[10px] md:text-xs uppercase">
                 CAPCUT
               </span>
-              <span className="border-2 border-white px-4 py-2 font-black text-[10px] md:text-xs uppercase">
+              <span className="border-2 border-white px-3 md:px-4 py-1.5 md:py-2 font-black text-[10px] md:text-xs uppercase">
                 PROMPTING
               </span>
             </div>

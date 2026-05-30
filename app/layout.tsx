@@ -22,10 +22,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable}`}>
-      <body className="antialiased bg-base text-white cursor-none">
+      <body className="antialiased bg-base text-white cursor-none overflow-x-hidden">
         <Cursor />
         <div className="noise" />
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <main className="overflow-x-hidden w-full">
+            {children}
+          </main>
+        </SmoothScroll>
       </body>
     </html>
   );

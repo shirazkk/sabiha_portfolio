@@ -19,6 +19,7 @@ const Education = () => {
         scrollTrigger: {
           trigger: ".edu-heading",
           start: "top 85%",
+          toggleActions: "play none none reverse",
         }
       }
     );

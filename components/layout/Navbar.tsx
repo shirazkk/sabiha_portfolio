@@ -1,14 +1,18 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useLenis } from "lenis/react";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 const Navbar = () => {
   const container = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
+  const [isOpen, setIsOpen] = useState(false);
 
+  // Entrance animations for desktop/nav elements on mount
   useGSAP(() => {
     const tl = gsap.timeline();
 
@@ -21,6 +25,16 @@ const Navbar = () => {
       .to(".hire-me-btn", { opacity: 1, scale: 1, duration: 0.5 }, "-=0.3");
   }, { scope: container });
 
+  // Disable page scroll when mobile menu is open
+  useEffect(() => {
+    if (!lenis) return;
+    if (isOpen) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
+  }, [isOpen, lenis]);
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const element = document.querySelector(targetId) as HTMLElement;
@@ -29,38 +43,218 @@ const Navbar = () => {
     }
   };
 
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    const element = document.querySelector(targetId) as HTMLElement;
+    if (element && lenis) {
+      setTimeout(() => {
+        lenis.scrollTo(element, { duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      }, 300); // Snappier transition
+    }
+  };
+
+  // Variants for mobile menu animation
+  const menuVariants: Variants = {
+    hidden: {
+      x: "100%",
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40,
+        delay: 0.1,
+      },
+    },
+    visible: {
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 40,
+      },
+    },
+  };
+
+  const backdropVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
+  const linksContainerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const linkVariants: Variants = {
+    hidden: { x: 20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      },
+    },
+  };
+
   return (
-    <nav ref={container} className="fixed top-0 left-0 w-full z-[100] px-6 lg:px-12 py-6 mix-blend-exclusion">
-      <div className="flex items-center justify-between border-b-2 border-white pb-4">
-        <div className="flex items-center gap-4 nav-link cursor-pointer" onClick={() => lenis?.scrollTo(0)}>
-          <span className="font-black text-2xl tracking-tighter uppercase leading-none">
-            SABIHA AAMIR
-          </span>
-          <span className="w-4 h-4 rounded-full bg-neon-green animate-pulse shadow-[0_0_15px_#00FF00]"></span>
+    <>
+      <nav ref={container} className="fixed top-0 left-0 w-full z-[100] px-6 lg:px-12 py-6 mix-blend-exclusion">
+        <div className="flex items-center justify-between border-b-2 border-white pb-4">
+          <div 
+            className="flex items-center gap-4 nav-link cursor-pointer" 
+            onClick={() => { 
+              setIsOpen(false); 
+              lenis?.scrollTo(0); 
+            }}
+          >
+            <span className="font-black text-2xl tracking-tighter uppercase leading-none">
+              SABIHA AAMIR
+            </span>
+            <span className="w-4 h-4 rounded-full bg-neon-green animate-pulse shadow-[0_0_15px_#00FF00]"></span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-12 font-black text-sm tracking-widest uppercase">
+            <a href="#about" onClick={(e) => handleNavClick(e, "#about")} className="nav-link hover:text-neon-pink transition-all duration-300">
+              ABOUT
+            </a>
+            <a href="#work" onClick={(e) => handleNavClick(e, "#work")} className="nav-link hover:text-neon-blue transition-all duration-300">
+              WORK
+            </a>
+            <a href="#skills" onClick={(e) => handleNavClick(e, "#skills")} className="nav-link hover:text-neon-green transition-all duration-300">
+              SKILLS
+            </a>
+            <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className="nav-link hover:text-neon-gold transition-all duration-300">
+              CONTACT
+            </a>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Desktop Hire Me Button */}
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
+              className="hire-me-btn hidden md:inline-block bg-white text-black px-8 py-3 font-black text-sm uppercase tracking-widest hover:bg-neon-pink hover:text-white transition-all transform hover:-translate-y-1 active:translate-y-0"
+            >
+              HIRE ME
+            </a>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden relative z-[110] flex items-center justify-center p-2 text-white hover:text-neon-pink transition-colors cursor-pointer nav-link"
+              aria-label="Toggle Menu"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isOpen ? "close" : "open"}
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {isOpen ? <X size={32} /> : <Menu size={32} />}
+                </motion.div>
+              </AnimatePresence>
+            </button>
+          </div>
         </div>
-        <div className="hidden md:flex items-center gap-12 font-black text-sm tracking-widest uppercase">
-          <a href="#about" onClick={(e) => handleNavClick(e, "#about")} className="nav-link hover:text-neon-pink transition-all duration-300">
-            ABOUT
-          </a>
-          <a href="#work" onClick={(e) => handleNavClick(e, "#work")} className="nav-link hover:text-neon-blue transition-all duration-300">
-            WORK
-          </a>
-          <a href="#skills" onClick={(e) => handleNavClick(e, "#skills")} className="nav-link hover:text-neon-green transition-all duration-300">
-            SKILLS
-          </a>
-          <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className="nav-link hover:text-neon-gold transition-all duration-300">
-            CONTACT
-          </a>
-        </div>
-        <a
-          href="#contact"
-          onClick={(e) => handleNavClick(e, "#contact")}
-          className="hire-me-btn bg-white text-black px-8 py-3 font-black text-sm uppercase tracking-widest hover:bg-neon-pink hover:text-white transition-all transform hover:-translate-y-1 active:translate-y-0"
-        >
-          HIRE ME
-        </a>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile Sidebar Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={backdropVariants}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-[80] md:hidden"
+            />
+            
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={menuVariants}
+              className="fixed top-0 right-0 w-[85%] max-w-[400px] h-screen bg-[#050505] z-[90] flex flex-col justify-center px-8 border-l border-white/10 md:hidden shadow-[-20px_0_50px_rgba(0,0,0,0.8)]"
+            >
+              <motion.div
+                variants={linksContainerVariants}
+                className="flex flex-col gap-8 font-black text-5xl tracking-widest uppercase"
+              >
+                <motion.div variants={linkVariants}>
+                  <a
+                    href="#about"
+                    onClick={(e) => handleMobileNavClick(e, "#about")}
+                    className="hover:text-neon-pink transition-all duration-300 block py-2 outline-text hover:outline-none"
+                  >
+                    ABOUT
+                  </a>
+                </motion.div>
+                <motion.div variants={linkVariants}>
+                  <a
+                    href="#work"
+                    onClick={(e) => handleMobileNavClick(e, "#work")}
+                    className="hover:text-neon-blue transition-all duration-300 block py-2 outline-text hover:outline-none"
+                  >
+                    WORK
+                  </a>
+                </motion.div>
+                <motion.div variants={linkVariants}>
+                  <a
+                    href="#skills"
+                    onClick={(e) => handleMobileNavClick(e, "#skills")}
+                    className="hover:text-neon-green transition-all duration-300 block py-2 outline-text hover:outline-none"
+                  >
+                    SKILLS
+                  </a>
+                </motion.div>
+                <motion.div variants={linkVariants}>
+                  <a
+                    href="#contact"
+                    onClick={(e) => handleMobileNavClick(e, "#contact")}
+                    className="hover:text-neon-gold transition-all duration-300 block py-2 outline-text hover:outline-none"
+                  >
+                    CONTACT
+                  </a>
+                </motion.div>
+                <motion.div variants={linkVariants} className="pt-8">
+                  <a
+                    href="#contact"
+                    onClick={(e) => handleMobileNavClick(e, "#contact")}
+                    className="w-full text-center block bg-white text-black px-8 py-5 font-black text-xl uppercase tracking-widest hover:bg-neon-pink hover:text-white transition-all transform hover:-translate-y-2 active:translate-y-0 shadow-[0_10px_20px_rgba(255,255,255,0.1)]"
+                  >
+                    HIRE ME
+                  </a>
+                </motion.div>
+              </motion.div>
+              
+              {/* Footer info in sidebar */}
+              <motion.div 
+                variants={linkVariants}
+                className="absolute bottom-12 left-8 right-8 border-t border-white/10 pt-8"
+              >
+                <p className="text-zinc-500 font-bold text-xs tracking-widest uppercase">
+                  Let&apos;s create something extraordinary
+                </p>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

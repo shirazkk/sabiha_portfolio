@@ -19,6 +19,7 @@ const Skills = () => {
         scrollTrigger: {
           trigger: ".skills-heading",
           start: "top 85%",
+          toggleActions: "play none none reverse",
         }
       }
     );
@@ -40,6 +41,7 @@ const Skills = () => {
           scrollTrigger: {
             trigger: container.current,
             start: "top 85%",
+            toggleActions: "play none none reverse",
           },
         }
       );

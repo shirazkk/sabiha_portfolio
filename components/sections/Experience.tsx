@@ -19,6 +19,7 @@ const Experience = () => {
         scrollTrigger: {
           trigger: ".exp-heading",
           start: "top 85%",
+          toggleActions: "play none none reverse",
         }
       }
     );
@@ -36,6 +37,7 @@ const Experience = () => {
           scrollTrigger: {
             trigger: block,
             start: "top 85%",
+            toggleActions: "play none none reverse",
           }
         }
       );
@@ -51,6 +53,7 @@ const Experience = () => {
           scrollTrigger: {
             trigger: title,
             start: "top 85%",
+            toggleActions: "play none none reverse",
           }
         }
       );
