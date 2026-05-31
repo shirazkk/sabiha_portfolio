@@ -1,147 +1,190 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Volume2, VolumeX, Loader2 } from "lucide-react";
+
+interface Project {
+  title: string;
+  description: string;
+  category: string;
+  videoUrl: string;
+  thumbnail: string;
+}
+
+const ProjectCard = ({ project }: { project: Project }) => {
+  const [isMuted, setIsMuted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      const newMuteState = !videoRef.current.muted;
+      videoRef.current.muted = newMuteState;
+      setIsMuted(newMuteState);
+    }
+  };
+
+  const handleWaiting = () => setIsLoading(true);
+  const handlePlaying = () => setIsLoading(false);
+  const handleCanPlay = () => setIsLoading(false);
+
+  return (
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group relative flex flex-col bg-surface/30 border border-white/5 hover:border-neon-pink/30 transition-all duration-500 overflow-hidden max-w-[320px] mx-auto"
+    >
+      {/* Video Container - Compact Vertical */}
+      <div className="relative aspect-[9/16] w-full overflow-hidden cursor-pointer bg-black">
+        <video
+          ref={videoRef}
+          src={project.videoUrl}
+          poster={project.thumbnail}
+          loop
+          playsInline
+          preload="auto"
+          onWaiting={handleWaiting}
+          onPlaying={handlePlaying}
+          onCanPlay={handleCanPlay}
+          className={`w-full h-full object-cover scale-105 group-hover:scale-110 transition-all duration-700 ${isLoading && isHovered ? "opacity-50 blur-sm" : "opacity-100"}`}
+        />
+
+        {/* Loading Spinner */}
+        {isLoading && isHovered && (
+          <div className="absolute inset-0 z-40 flex items-center justify-center">
+            <Loader2 className="w-8 h-8 text-neon-pink animate-spin" />
+          </div>
+        )}
+
+        {/* Mute/Unmute Button */}
+        <button
+          onClick={toggleMute}
+          className="absolute top-3 right-3 z-30 p-2 bg-black/50 backdrop-blur-md rounded-full border border-white/10 hover:bg-neon-pink hover:border-neon-pink transition-all opacity-0 group-hover:opacity-100"
+        >
+          {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+        </button>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      </div>
+
+      {/* Content */}
+      <div className="p-5 flex flex-col gap-1.5">
+        <span className="text-neon-pink font-black text-[9px] md:text-[10px] tracking-[0.2em] uppercase">
+          {project.category}
+        </span>
+        <h3 className="text-lg md:text-xl font-black tracking-tighter uppercase text-white group-hover:text-neon-pink transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-zinc-500 font-medium text-[11px] md:text-xs leading-tight line-clamp-2">
+          {project.description}
+        </p>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-0 h-[2px] bg-neon-pink scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+    </div>
+  );
+};
 
 const Work = () => {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    gsap.set(".work-card", { y: 80, opacity: 0 });
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      },
-    });
+      tl.fromTo(
+        ".work-heading",
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
+      ).fromTo(
+        ".project-grid-item",
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.2, duration: 0.8 },
+        "-=0.5",
+      );
+    },
+    { scope: container },
+  );
 
-    tl.fromTo(".work-heading", { x: -100, opacity: 0 }, { x: 0, opacity: 1, duration: 1, ease: "power3.out" })
-      .to(".featured-work", { scale: 1, opacity: 1, duration: 0.8 }, "-=0.5")
-      .to(".work-card", { y: 0, opacity: 1, stagger: 0.15, duration: 0.6 }, "-=0.4");
-  }, { scope: container });
-
-  const projects = [
+  const projects: Project[] = [
     {
-      title: "AI INFLUENCER ZARA",
-      tag: "CHARACTER DESIGN",
-      color: "bg-neon-blue",
-      img: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1000",
-      textColor: "text-white",
-      tagColor: "bg-white text-black",
+      title: "AI INFLUENCER CREATION",
+      description:
+        "Raw reference photo turned into a hyper-realistic AI influencer with lip sync and animation.",
+      category: "AI VIDEO • CHARACTER",
+      videoUrl:
+        "https://res.cloudinary.com/dv5ic5hc0/video/upload/f_auto,q_auto,w_1280/v1780216311/WhatsApp_Video_2026-05-30_at_2.17.07_PM_rbtnls.mp4",
+      thumbnail:
+        "https://res.cloudinary.com/dv5ic5hc0/video/upload/so_auto,f_jpg/v1780216311/WhatsApp_Video_2026-05-30_at_2.17.07_PM_rbtnls.jpg",
     },
     {
-      title: "REELS — ORGANIC & PURE",
-      tag: "SHORT-FORM",
-      color: "bg-neon-green",
-      img: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=1000",
-      textColor: "text-black",
-      tagColor: "bg-black text-white",
+      title: "PREMIUM AI INFLUENCER",
+      description:
+        "AI character brought to life with cinematic backgrounds and natural lip sync animation.",
+      category: "AI VIDEO • LIP SYNC",
+      videoUrl:
+        "https://res.cloudinary.com/dv5ic5hc0/video/upload/f_auto,q_auto,w_1280/v1780217086/WhatsApp_Video_2026-05-30_at_2.17.06_PM_ihtcfg.mp4",
+      thumbnail:
+        "https://res.cloudinary.com/dv5ic5hc0/video/upload/so_auto,f_jpg/v1780217086/WhatsApp_Video_2026-05-30_at_2.17.06_PM_ihtcfg.jpg",
     },
     {
-      title: "AI BRAND IDENTITY",
-      tag: "VISUALS",
-      color: "bg-neon-gold",
-      img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1000",
-      textColor: "text-black",
-      tagColor: "bg-black text-white",
-    },
-    {
-      title: "AD SCRIPT WRITING",
-      tag: "STORYTELLING",
-      color: "bg-neon-pink",
-      img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=1000",
-      textColor: "text-white",
-      tagColor: "bg-white text-black",
+      title: "RAW TO FINAL EDIT",
+      description:
+        "Unedited raw footage transformed into a scroll-stopping final edit with color grading and motion.",
+      category: "AI VIDEO • EDITING",
+      videoUrl:
+        "https://res.cloudinary.com/dv5ic5hc0/video/upload/f_auto,q_auto,w_1280/v1780217415/WhatsApp_Video_2026-05-30_at_2.17.05_PM_g8ojxl.mp4",
+      thumbnail:
+        "https://res.cloudinary.com/dv5ic5hc0/video/upload/so_auto,f_jpg/v1780217415/WhatsApp_Video_2026-05-30_at_2.17.05_PM_g8ojxl.jpg",
     },
   ];
 
   return (
-    <section id="work" ref={container} className="py-20 md:py-32 bg-base overflow-hidden">
-      <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 md:mb-24 gap-8">
+    <section
+      id="work"
+      ref={container}
+      className="py-20 md:py-32 bg-base overflow-hidden border-t border-white/5"
+    >
+      <div className="max-w-6xl mx-auto px-6 lg:px-12">
+        <div className="mb-16 md:mb-24">
           <h2 className="work-heading font-black text-[clamp(2.5rem,10vw,8rem)] leading-none tracking-tighter uppercase mb-0">
             WORK
           </h2>
-          <div className="flex flex-wrap gap-3 md:gap-4">
-            <button className="px-4 md:px-6 py-2 border-2 md:border-4 border-white font-black uppercase text-xs md:text-sm tracking-widest bg-white text-black transition-all">
-              ALL
-            </button>
-            <button className="px-4 md:px-6 py-2 border-2 md:border-4 border-white text-white font-black uppercase text-xs md:text-sm tracking-widest hover:bg-neon-pink hover:border-neon-pink transition-all">
-              AI VIDEO
-            </button>
-            <button className="px-4 md:px-6 py-2 border-2 md:border-4 border-white text-white font-black uppercase text-xs md:text-sm tracking-widest hover:bg-neon-blue hover:border-neon-blue transition-all">
-              INFLUENCER
-            </button>
-            <button className="px-4 md:px-6 py-2 border-2 md:border-4 border-white text-white font-black uppercase text-xs md:text-sm tracking-widest hover:bg-neon-green hover:border-neon-green transition-all">
-              BRAND
-            </button>
-          </div>
         </div>
 
-        {/* Featured Project */}
-        <div className="featured-work relative group mb-20 md:mb-32 scale-95 opacity-0">
-          <div className="absolute inset-0 clash-gradient-1 transform scale-[1.01] md:scale-[1.02] -rotate-1 group-hover:rotate-0 transition-all duration-700"></div>
-          <div className="relative bg-surface p-2 md:p-4 flex flex-col overflow-hidden">
-            <div className="flex gap-2 md:gap-3 mb-4">
-              <div className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-red-500"></div>
-              <div className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-yellow-500"></div>
-              <div className="w-2 h-2 md:w-4 md:h-4 rounded-full bg-green-500"></div>
-            </div>
-            <div className="flex-1 bg-black flex items-center justify-center relative min-h-[250px] md:min-h-[400px]">
-              <img
-                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=2000"
-                alt="Featured Work"
-                className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 opacity-70"
-              />
-              <div className="absolute inset-0 bg-neon-pink opacity-30 mix-blend-multiply"></div>
-              <div className="relative z-10 text-center px-4">
-                <h3 className="font-black text-[clamp(2rem,7vw,5rem)] tracking-tighter uppercase text-white drop-shadow-2xl">
-                  CINEMATIC AI AD
-                </h3>
-              </div>
-            </div>
-            <div className="py-6 md:py-8 flex flex-wrap gap-2 md:gap-4">
-              <span className="bg-white text-black px-3 md:px-4 py-1.5 md:py-2 font-black text-[10px] md:text-xs uppercase">
-                COMMERCIAL VIDEO
-              </span>
-              <span className="border-2 border-white px-3 md:px-4 py-1.5 md:py-2 font-black text-[10px] md:text-xs uppercase">
-                CAPCUT
-              </span>
-              <span className="border-2 border-white px-3 md:px-4 py-1.5 md:py-2 font-black text-[10px] md:text-xs uppercase">
-                PROMPTING
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {projects.map((project, index) => (
-            <div key={index} className="work-card">
-              <div
-                className={`${project.color} p-1 pb-12 group transform hover:-translate-y-2 md:hover:-translate-y-4 transition-all`}
-              >
-                <div className="bg-black aspect-[4/3] overflow-hidden relative">
-                  <img
-                    src={project.img}
-                    alt={project.title}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                  />
-                  <div className={`absolute inset-0 ${project.color} opacity-20 mix-blend-overlay`}></div>
-                </div>
-                <div className="p-4 md:p-6">
-                  <h4 className={`font-black text-2xl md:text-4xl uppercase tracking-tighter mb-2 ${project.textColor}`}>
-                    {project.title}
-                  </h4>
-                  <span className={`font-black text-[10px] md:text-sm uppercase px-2 ${project.tagColor}`}>
-                    {project.tag}
-                  </span>
-                </div>
-              </div>
+        {/* Compact Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+          {projects.map((project, idx) => (
+            <div key={idx} className="project-grid-item">
+              <ProjectCard project={project} />
             </div>
           ))}
         </div>
