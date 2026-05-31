@@ -34,7 +34,11 @@ const Contact = () => {
   }, { scope: container });
 
   return (
-    <section id="contact" ref={container} className="py-48 bg-white text-black relative">
+    <section id="contact" ref={container} className="py-48 bg-white text-black relative overflow-hidden">
+      {/* Atmospheric Radial Blooms */}
+      <div className="absolute top-0 right-1/4 w-[40vw] h-[40vw] bg-neon-pink/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[30vw] h-[30vw] bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none" />
+
       <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/diagonal-stripes.png')]"></div>
       <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center relative z-10 overflow-hidden">
         <h2 className="font-black text-[10vw] leading-[0.85] tracking-tighter uppercase mb-4 overflow-hidden">

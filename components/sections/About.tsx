@@ -27,7 +27,11 @@ const About = () => {
 
   return (
     <section id="about" ref={container} className="py-20 md:py-32 relative bg-white text-black overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* Atmospheric Radial Blooms */}
+      <div className="absolute top-0 right-1/4 w-[40vw] h-[40vw] bg-neon-pink/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[30vw] h-[30vw] bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex justify-end mb-16">
           <h2 className="about-heading font-black text-[clamp(2.5rem,10vw,8rem)] leading-none tracking-tighter uppercase text-neon-pink opacity-0">
             ABOUT Me
