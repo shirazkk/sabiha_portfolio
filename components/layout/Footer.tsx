@@ -8,13 +8,13 @@ const Footer = () => {
           SABIHA <span className="text-neon-pink">AAMIR</span>
         </div>
         <div className="flex gap-12 font-black text-sm uppercase tracking-widest text-white">
-          <a href="#" className="hover:text-neon-blue transition-all">
+          <a href="#" aria-label="Visit Sabiha Aamir's LinkedIn profile" className="hover:text-neon-blue transition-all">
             LINKEDIN
           </a>
-          <a href="#" className="hover:text-neon-pink transition-all">
+          <a href="#" aria-label="Visit Sabiha Aamir's Instagram profile" className="hover:text-neon-pink transition-all">
             INSTAGRAM
           </a>
-          <a href="#" className="hover:text-neon-green transition-all">
+          <a href="#" aria-label="Visit Sabiha Aamir's Behance profile" className="hover:text-neon-green transition-all">
             BEHANCE
           </a>
         </div>

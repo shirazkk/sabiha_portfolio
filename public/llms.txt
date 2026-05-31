@@ -1,0 +1,21 @@
+# Sabiha Aamir — AI Content Creator & Prompt Engineer
+
+Portfolio of Sabiha Aamir, an AI Content Creator and Prompt Engineer specializing in cinematic digital storytelling, advanced AI workflows, and media automation. Currently pursuing a Bachelor's in Artificial Intelligence at KFUEIT.
+
+## Professional Summary
+Bridging the gap between raw code and visual storytelling to build cinematic digital universes.
+
+## Key Skills
+- Artificial Intelligence
+- Prompt Engineering
+- Media Automation
+- Digital Storytelling
+- Futuristic Digital Aesthetics
+- Frontend Development
+
+## Contact
+- Portfolio: https://sabiha-swart.vercel.app
+- Available for Freelance, Brand Collaborations, and Remote work.
+
+---
+<!-- Updated: 2026-05-31 -->

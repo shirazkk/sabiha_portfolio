@@ -9,7 +9,6 @@ const Contact = () => {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    gsap.set(".contact-word", { y: 50, opacity: 0 });
     gsap.set(".contact-btn", { y: 40, opacity: 0 });
 
     const tl = gsap.timeline({
@@ -54,6 +53,7 @@ const Contact = () => {
         <div className="flex flex-wrap justify-center gap-8">
           <a
             href="mailto:sabihaaamir2@gmail.com"
+            aria-label="Send an email to Sabiha Aamir"
             className="contact-btn bg-black text-white px-12 py-6 font-black text-2xl uppercase tracking-widest hover:bg-neon-pink transition-all transform hover:-translate-y-2 inline-block"
           >
             EMAIL ME
@@ -61,6 +61,7 @@ const Contact = () => {
           <a
             href="https://linkedin.com/in/sabihaaamir"
             target="_blank"
+            aria-label="Visit Sabiha Aamir's LinkedIn profile"
             className="contact-btn border-8 border-black px-12 py-6 font-black text-2xl uppercase tracking-widest hover:bg-neon-blue hover:border-neon-blue hover:text-white transition-all transform hover:-translate-y-2 inline-block"
           >
             LINKEDIN

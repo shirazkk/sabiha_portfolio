@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sabiha Aamir — Portfolio
 
-## Getting Started
+**AI Content Creator | Prompt Engineer | Digital Storyteller**
 
-First, run the development server:
+Welcome to the official portfolio repository of Sabiha Aamir. This project showcases cinematic digital experiences built at the intersection of Artificial Intelligence, prompt engineering, and visual storytelling.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 About
+I bridge the gap between raw code and visual storytelling to build cinematic digital universes. With a passion for media automation and future digital aesthetics, I leverage advanced AI workflows to create unique, user-centric experiences.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Focus:** AI-driven content, Prompt Engineering, Media Automation.
+- **Background:** Currently pursuing a Bachelor's in Artificial Intelligence at KFUEIT.
+- **Status:** Open for Freelance, Brand Collaborations, and Remote opportunities.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠 Tech Stack
+- **Frameworks:** Next.js 16+, React 19
+- **Styling:** Tailwind CSS, Framer Motion, GSAP (Cinematic Animations)
+- **AI/Tools:** Advanced Prompt Engineering, Media Automation Tools
+- **Deployment:** Vercel
 
-## Learn More
+## 📂 Key Projects
+- **AI Influencer Creation**: Raw reference photo turned into a hyper-realistic AI influencer with lip sync and animation.
+- **Premium AI Influencer**: AI character brought to life with cinematic backgrounds and natural lip sync animation.
+- **Raw to Final Edit**: Unedited raw footage transformed into a scroll-stopping final edit with color grading and motion.
 
-To learn more about Next.js, take a look at the following resources:
+## 📬 Contact
+- **Portfolio:** [sabiha-aamir-portfolio.vercel.app](https://sabiha-swart.vercel.app)
+- **Email:** [sabihaaamir2@gmail.com](mailto:sabihaaamir2@gmail.com)
+- **LinkedIn:** [linkedin.com/in/sabihaaamir](https://linkedin.com/in/sabihaaamir)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+*This project is built using [Next.js](https://nextjs.org/).*

@@ -7,6 +7,34 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /* Hallmark · genre: atmospheric · macrostructure: Catalogue · theme: Midnight · enrichment: Tier A (CSS Bloom) */
 
+// Hoist static data (rerender-memo-with-default-value)
+const SERVICE_TIERS = [
+  {
+    id: "01",
+    title: "FREELANCE PRODUCTION",
+    focus: "SINGLE PROJECTS",
+    items: ["AI VIDEO", "REELS", "CAPTIONS", "HOOK EDITS"],
+    accent: "var(--color-neon-pink)",
+    cta: "BOOK PROJECT"
+  },
+  {
+    id: "02",
+    title: "FULL SERVICE STUDIO",
+    focus: "COMPLETE PRODUCTION",
+    items: ["AI PRODUCTION", "AD SCRIPTS", "BRAND IDENTITY", "AUTOMATION", "STRATEGY"],
+    accent: "var(--color-neon-green)",
+    cta: "GET FULL ACCESS"
+  },
+  {
+    id: "03",
+    title: "BRAND PARTNERSHIPS",
+    focus: "COLLABORATIONS",
+    items: ["AD SCRIPTS", "INFLUENCER SYSTEMS", "BRANDED CONTENT"],
+    accent: "var(--color-neon-blue)",
+    cta: "PARTNER UP"
+  }
+];
+
 const Services = () => {
   const container = useRef<HTMLDivElement>(null);
 
@@ -27,53 +55,29 @@ const Services = () => {
       }
     );
 
-    // Fade in the inventory header
+    // Slide and fade in the inventory header from left
     gsap.fromTo(".inventory-header",
-      { opacity: 0 },
+      { x: -100, opacity: 0 },
       {
+        x: 0,
         opacity: 1,
         duration: 1.2,
-        ease: "none",
+        ease: "power3.out",
         scrollTrigger: {
           trigger: ".inventory-header",
           start: "top 90%",
+          toggleActions: "play none none reverse",
         }
       }
     );
   }, { scope: container });
 
-  const serviceTiers = [
-    {
-      id: "01",
-      title: "FREELANCE PRODUCTION",
-      focus: "SINGLE PROJECTS",
-      items: ["AI VIDEO", "REELS", "CAPTIONS", "HOOK EDITS"],
-      accent: "var(--color-neon-pink)",
-      cta: "BOOK PROJECT"
-    },
-    {
-      id: "02",
-      title: "FULL SERVICE STUDIO",
-      focus: "COMPLETE PRODUCTION",
-      items: ["AI PRODUCTION", "AD SCRIPTS", "BRAND IDENTITY", "AUTOMATION", "STRATEGY"],
-      accent: "var(--color-neon-green)",
-      cta: "GET FULL ACCESS"
-    },
-    {
-      id: "03",
-      title: "BRAND PARTNERSHIPS",
-      focus: "COLLABORATIONS",
-      items: ["AD SCRIPTS", "INFLUENCER SYSTEMS", "BRANDED CONTENT"],
-      accent: "var(--color-neon-blue)",
-      cta: "PARTNER UP"
-    }
-  ];
-
   return (
     <section 
       id="services" 
       ref={container} 
-      className="relative py-24 md:py-48 bg-white text-black overflow-hidden border-t border-black/5"
+      // rendering-content-visibility for performance
+      className="relative py-24 md:py-48 bg-white text-black overflow-hidden border-t border-black/5 [content-visibility:auto] [contain-intrinsic-size:800px]"
     >
       {/* Atmospheric Radial Blooms (Increased opacity for white background) */}
       <div className="absolute top-0 left-1/4 w-[40vw] h-[40vw] bg-neon-blue/15 rounded-full blur-[120px] pointer-events-none" />
@@ -97,7 +101,7 @@ const Services = () => {
 
         {/* Tabular Catalogue Grid */}
         <div className="flex flex-col">
-          {serviceTiers.map((tier) => (
+          {SERVICE_TIERS.map((tier) => (
             <div 
               key={tier.id} 
               className="service-row group border-b border-black/10 py-12 md:py-20 flex flex-col lg:grid lg:grid-cols-12 gap-8 items-start relative transition-all hover:bg-black/[0.02]"
@@ -139,9 +143,9 @@ const Services = () => {
                 </a>
               </div>
               
-              {/* Row Glow Indicator */}
+              {/* Row Glow Indicator - Hardware accelerated (js-batch-dom-css) */}
               <div 
-                className="absolute left-0 top-0 bottom-0 w-[2px] opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute left-0 top-0 bottom-0 w-[2px] opacity-0 group-hover:opacity-100 transition-opacity translate-z-0"
                 style={{ backgroundColor: tier.accent, boxShadow: `0 0 15px ${tier.accent}` }}
               />
             </div>
