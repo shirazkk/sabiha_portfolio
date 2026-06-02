@@ -4,7 +4,10 @@ import "./globals.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Cursor from "@/components/ui/Cursor";
 import { Preloader } from "@/components/ui/Preloader";
-import { LoadingProvider, useLoading } from "@/components/context/LoadingContext";
+import {
+  LoadingProvider,
+  useLoading,
+} from "@/components/context/LoadingContext";
 
 function PreloaderManager() {
   const { loaded, setLoaded } = useLoading();
@@ -39,7 +42,9 @@ export default function RootLayout({
 function MainContent({ children }: { children: React.ReactNode }) {
   const { loaded } = useLoading();
   return (
-    <main className={`overflow-x-hidden w-full transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+    <main
+      className={`overflow-x-hidden w-full transition-opacity duration-1000 ${loaded ? "opacity-100" : "opacity-0"}`}
+    >
       {children}
     </main>
   );
