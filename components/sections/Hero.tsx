@@ -18,9 +18,7 @@ const Hero = () => {
     targetId: string,
   ) => {
     e.preventDefault();
-
     const element = document.querySelector(targetId) as HTMLElement;
-
     if (element && lenis) {
       lenis.scrollTo(element, { duration: 1.5 });
     }
@@ -79,28 +77,27 @@ const Hero = () => {
   return (
     <section
       ref={container}
-      className="relative w-full flex flex-col items-center justify-center pt-32 pb-24 md:pt-48 md:pb-32 overflow-x-hidden"
+      className="relative w-full min-h-dvh flex flex-col items-center justify-center overflow-hidden bg-black"
     >
-      {/* Background Glow */}
-      <div className="absolute inset-y-0 right-0 w-[60vw] bg-neon-pink opacity-10 blur-[180px]" />
-
-      <div className="absolute inset-y-0 left-0 w-[60vw] bg-neon-blue opacity-10 blur-[180px]" />
+      {/* Background Glows - pointer-events-none ensures they don't block button clicks */}
+      <div className="absolute inset-y-0 right-0 w-[60vw] bg-neon-pink opacity-10 blur-[150px] md:blur-[180px] pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-[60vw] bg-neon-blue opacity-10 blur-[150px] md:blur-[180px] pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-30 w-full px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="font-jedar text-[clamp(3rem,12vw,12rem)] leading-[0.85] tracking-tighter uppercase mb-6">
+      <div className="relative z-30 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 className="font-jedar text-[clamp(2.5rem,12vw,10rem)] leading-[0.85] tracking-tighter uppercase mb-6">
           <span className="hero-word-sabiha inline-block">SABIHA</span>{" "}
           <span className="hero-word-aamir text-neon-pink neon-text-pink inline-block">
             AAMIR
           </span>
         </h1>
 
-        <p className="font-black text-xs md:text-2xl tracking-[0.2em] md:tracking-[0.3em] uppercase mb-10 flex flex-col md:flex-row items-center justify-center gap-4">
+        <p className="font-black text-[10px] md:text-2xl tracking-[0.15em] md:tracking-[0.3em] uppercase mb-10 flex flex-col md:flex-row items-center justify-center gap-4">
           <span className="hero-badge bg-neon-blue px-3 py-1 text-white rounded-sm">
             AI CONTENT CREATOR
           </span>
 
-          <span className="hidden md:block">/</span>
+          <span className="hidden md:block opacity-50">/</span>
 
           <span className="hero-badge bg-neon-green px-3 py-1 text-black rounded-sm">
             PROMPT ENGINEER
@@ -136,12 +133,11 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 md:bottom-10 flex flex-col items-center gap-2 animate-bounce">
-        <span className="font-black text-xs tracking-widest uppercase text-neon-gold">
+      <div className="absolute bottom-6 md:bottom-10 flex flex-col items-center gap-2 animate-bounce">
+        <span className="font-black text-[10px] md:text-xs tracking-widest uppercase text-neon-gold">
           SCROLL DOWN
         </span>
-
-        <Icon icon="lucide:arrow-down" className="text-2xl text-neon-gold" />
+        <Icon icon="lucide:arrow-down" className="text-xl md:text-2xl text-neon-gold" />
       </div>
     </section>
   );
