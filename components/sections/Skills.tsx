@@ -39,8 +39,8 @@ const Skills = () => {
           duration: 1,
           ease: "back.out(1.2)",
           scrollTrigger: {
-            trigger: container.current,
-            start: "top 85%",
+            trigger: pill,
+            start: "top 90%",
             toggleActions: "play none none reverse",
           },
         }
@@ -51,7 +51,7 @@ const Skills = () => {
   return (
     <section id="skills" ref={container} className="py-32 bg-base">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <h2 className="skills-heading font-black text-[clamp(4rem,11vw,8rem)] leading-none tracking-tighter uppercase mb-24 text-white">
+        <h2 className="skills-heading font-black text-[clamp(4rem,14vw,8rem)] leading-none tracking-tighter uppercase mb-24 text-white">
           SKILLS
         </h2>
 

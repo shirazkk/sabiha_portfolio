@@ -210,7 +210,7 @@ const Work = () => {
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         <div className="mb-12 md:mb-16">
-          <h2 className="work-heading font-black text-[clamp(2.5rem,10vw,8rem)] leading-none tracking-tighter uppercase">
+          <h2 className="work-heading font-black text-[clamp(3rem,12vw,8rem)] leading-none tracking-tighter uppercase">
             WORK
           </h2>
         </div>

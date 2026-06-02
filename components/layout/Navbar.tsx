@@ -7,24 +7,35 @@ import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { ShinyButton } from "../ui/shiny-button";
+import { useLoading } from "../context/LoadingContext";
 
 const Navbar = () => {
   const container = useRef<HTMLDivElement>(null);
   const lenis = useLenis();
   const [isOpen, setIsOpen] = useState(false);
+  const { loaded } = useLoading();
 
   // Entrance animations for desktop/nav elements on mount
-  useGSAP(() => {
-    const tl = gsap.timeline();
+  useGSAP(
+    () => {
+      if (!loaded) return;
 
-    gsap.set(container.current, { y: -100 });
-    gsap.set(".nav-link", { opacity: 0, y: -20 });
-    gsap.set(".hire-me-btn", { opacity: 0, scale: 0.8 });
+      const tl = gsap.timeline();
 
-    tl.to(container.current, { y: 0, duration: 1, ease: "power3.out" })
-      .to(".nav-link", { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }, "-=0.5")
-      .to(".hire-me-btn", { opacity: 1, scale: 1, duration: 0.5 }, "-=0.3");
-  }, { scope: container });
+      gsap.set(container.current, { y: -100 });
+      gsap.set(".nav-link", { opacity: 0, y: -20 });
+      gsap.set(".hire-me-btn", { opacity: 0, scale: 0.8 });
+
+      tl.to(container.current, { y: 0, duration: 1, ease: "power3.out" })
+        .to(
+          ".nav-link",
+          { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 },
+          "-=0.5",
+        )
+        .to(".hire-me-btn", { opacity: 1, scale: 1, duration: 0.5 }, "-=0.3");
+    },
+    { dependencies: [loaded], scope: container },
+  );
 
   // Disable page scroll when mobile menu is open
   useEffect(() => {
@@ -36,21 +47,33 @@ const Navbar = () => {
     }
   }, [isOpen, lenis]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLElement>,
+    targetId: string,
+  ) => {
     e.preventDefault();
     const element = document.querySelector(targetId) as HTMLElement;
     if (element && lenis) {
-      lenis.scrollTo(element, { duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      lenis.scrollTo(element, {
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
     }
   };
 
-  const handleMobileNavClick = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
+  const handleMobileNavClick = (
+    e: React.MouseEvent<HTMLElement>,
+    targetId: string,
+  ) => {
     e.preventDefault();
     setIsOpen(false);
     const element = document.querySelector(targetId) as HTMLElement;
     if (element && lenis) {
       setTimeout(() => {
-        lenis.scrollTo(element, { duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+        lenis.scrollTo(element, {
+          duration: 1.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
       }, 300); // Snappier transition
     }
   };
@@ -107,33 +130,52 @@ const Navbar = () => {
 
   return (
     <>
-      <nav ref={container} className="fixed top-0 left-0 w-full z-[100] px-6 lg:px-12 py-6 mix-blend-exclusion">
+      <nav
+        ref={container}
+        className="fixed top-0 left-0 w-full z-[100] px-6 lg:px-12 py-6 mix-blend-exclusion"
+      >
         <div className="flex items-center justify-between border-b-2 border-white pb-4">
-          <div 
-            className="flex items-center gap-4 nav-link cursor-pointer" 
-            onClick={() => { 
-              setIsOpen(false); 
-              lenis?.scrollTo(0); 
+          <div
+            className="flex items-center gap-4 nav-link cursor-pointer"
+            onClick={() => {
+              setIsOpen(false);
+              lenis?.scrollTo(0);
             }}
           >
             <span className="font-black text-2xl tracking-tighter uppercase leading-none">
-              SABIHA AAMIR
+              SABIHA <span className="text-neon-pink">AAMIR</span> 
             </span>
             <span className="w-4 h-4 rounded-full bg-neon-green animate-pulse shadow-[0_0_15px_#00FF00]"></span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-12 font-black text-sm tracking-widest uppercase">
-            <a href="#about" onClick={(e) => handleNavClick(e, "#about")} className="nav-link hover:text-neon-pink transition-all duration-300">
+            <a
+              href="#about"
+              onClick={(e) => handleNavClick(e, "#about")}
+              className="nav-link hover:text-neon-pink transition-all duration-300"
+            >
               ABOUT
             </a>
-            <a href="#work" onClick={(e) => handleNavClick(e, "#work")} className="nav-link hover:text-neon-blue transition-all duration-300">
+            <a
+              href="#work"
+              onClick={(e) => handleNavClick(e, "#work")}
+              className="nav-link hover:text-neon-blue transition-all duration-300"
+            >
               WORK
             </a>
-            <a href="#skills" onClick={(e) => handleNavClick(e, "#skills")} className="nav-link hover:text-neon-green transition-all duration-300">
+            <a
+              href="#skills"
+              onClick={(e) => handleNavClick(e, "#skills")}
+              className="nav-link hover:text-neon-green transition-all duration-300"
+            >
               SKILLS
             </a>
-            <a href="#contact" onClick={(e) => handleNavClick(e, "#contact")} className="nav-link hover:text-neon-gold transition-all duration-300">
+            <a
+              href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
+              className="nav-link hover:text-neon-gold transition-all duration-300"
+            >
               CONTACT
             </a>
           </div>
@@ -184,7 +226,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 bg-black/60 backdrop-blur-md z-[80] md:hidden"
             />
-            
+
             <motion.div
               initial="hidden"
               animate="visible"
@@ -242,9 +284,9 @@ const Navbar = () => {
                   </ShinyButton>
                 </motion.div>
               </motion.div>
-              
+
               {/* Footer info in sidebar */}
-              <motion.div 
+              <motion.div
                 variants={linkVariants}
                 className="absolute bottom-12 left-8 right-8 border-t border-white/10 pt-8"
               >

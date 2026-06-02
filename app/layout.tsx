@@ -1,51 +1,15 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+"use client";
+
 import "./globals.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import Cursor from "@/components/ui/Cursor";
+import { Preloader } from "@/components/ui/Preloader";
+import { LoadingProvider, useLoading } from "@/components/context/LoadingContext";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "500", "700", "900"],
-  variable: "--font-inter",
-});
-
-export const metadata: Metadata = {
-  metadataBase: new URL("https://sabiha-swart.vercel.app"),
-  title: {
-    default: "Sabiha Aamir | AI Content Creator & Prompt Engineer",
-    template: "%s | Sabiha Aamir",
-  },
-  description: "Portfolio of Sabiha Aamir, specializing in AI-driven content creation, advanced prompt engineering, and cinematic digital storytelling. Student of Artificial Intelligence.",
-  openGraph: {
-    title: "Sabiha Aamir | AI Content Creator & Prompt Engineer",
-    description: "Portfolio of Sabiha Aamir, specializing in AI-driven content creation, advanced prompt engineering, and cinematic digital storytelling.",
-    type: "website",
-    url: "https://sabiha-swart.vercel.app",
-  },
-  icons: {
-    icon: [
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: "/apple-touch-icon.png",
-    other: [
-      {
-        rel: "manifest",
-        url: "/site.webmanifest",
-      },
-    ],
-  },
-};
-
-const personSchema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Sabiha Aamir",
-  "jobTitle": ["AI Content Creator", "Prompt Engineer"],
-  "description": "AI Content Creator and Prompt Engineer specializing in cinematic digital storytelling and AI workflows.",
-  "knowsAbout": ["Artificial Intelligence", "Prompt Engineering", "Media Automation", "Digital Storytelling"],
-};
+function PreloaderManager() {
+  const { loaded, setLoaded } = useLoading();
+  return !loaded ? <Preloader onComplete={() => setLoaded(true)} /> : null;
+}
 
 export default function RootLayout({
   children,
@@ -53,24 +17,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable}`}>
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-        />
       </head>
       <body className="antialiased bg-base text-white cursor-none overflow-x-hidden">
-        <Cursor />
-        <div className="noise" />
-        <SmoothScroll>
-          <main className="overflow-x-hidden w-full">
-            {children}
-          </main>
-        </SmoothScroll>
+        <LoadingProvider>
+          <PreloaderManager />
+          <Cursor />
+          <div className="noise" />
+          <SmoothScroll>
+            <MainContent>{children}</MainContent>
+          </SmoothScroll>
+        </LoadingProvider>
       </body>
     </html>
+  );
+}
+
+function MainContent({ children }: { children: React.ReactNode }) {
+  const { loaded } = useLoading();
+  return (
+    <main className={`overflow-x-hidden w-full transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+      {children}
+    </main>
   );
 }

@@ -33,21 +33,21 @@ const About = () => {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex justify-end mb-16">
-          <h2 className="about-heading font-black text-[clamp(2.5rem,10vw,8rem)] leading-none tracking-tighter uppercase text-neon-pink opacity-0">
+          <h2 className="about-heading font-black text-[clamp(3rem,12vw,8rem)] leading-none tracking-tighter uppercase text-neon-pink opacity-0">
             ABOUT Me
           </h2>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="about-bio lg:col-span-7 flex flex-col justify-center">
             <div className="relative">
-              <p className="font-black text-2xl md:text-5xl leading-tight tracking-tighter uppercase mb-12">
+              <p className="font-black text-xl md:text-5xl leading-tight tracking-tighter uppercase mb-12">
                 I build <span className="bg-black text-white px-3">cinematic</span> digital universes using{" "}
                 <span className="underline decoration-neon-pink decoration-4 md:decoration-8 underline-offset-4 md:underline-offset-8">
                   advanced AI tools
                 </span>{" "}
                 and modern workflows.
               </p>
-              <p className="text-lg md:text-xl font-medium leading-relaxed mb-8 border-l-4 md:border-l-8 border-neon-blue pl-6 md:pl-8">
+              <p className="text-base md:text-xl font-medium leading-relaxed mb-8 border-l-4 md:border-l-8 border-neon-blue pl-6 md:pl-8">
                 Currently mastering Artificial Intelligence at KFUEIT. Bridging the gap between raw code and visual storytelling. Passionate about media automation and future digital aesthetics.
               </p>
               <p className="font-black text-xl md:text-2xl uppercase tracking-tighter flex flex-wrap gap-4">

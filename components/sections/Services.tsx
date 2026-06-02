@@ -6,9 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShinyButton } from "../ui/shiny-button";
 
-/* Hallmark · genre: atmospheric · macrostructure: Catalogue · theme: Midnight · enrichment: Tier A (CSS Bloom) */
-
-// Hoist static data (rerender-memo-with-default-value)
+gsap.registerPlugin(ScrollTrigger);
 const SERVICE_TIERS = [
   {
     id: "01",
@@ -40,23 +38,7 @@ const Services = () => {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Reveal rows on scroll
-    gsap.fromTo(".service-row",
-      { y: 20, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 80%",
-        }
-      }
-    );
-
-    // Slide and fade in the inventory header from left
+    // Reveal header
     gsap.fromTo(".inventory-header",
       { x: -100, opacity: 0 },
       {
@@ -71,14 +53,34 @@ const Services = () => {
         }
       }
     );
+
+    // Reveal rows on scroll individually
+    const rows = gsap.utils.toArray<HTMLElement>(".service-row");
+    
+    gsap.set(rows, { y: 50, opacity: 0 });
+
+    rows.forEach((row) => {
+      gsap.to(row,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 95%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+    });
   }, { scope: container });
 
   return (
     <section 
       id="services" 
       ref={container} 
-      // rendering-content-visibility for performance
-      className="relative py-24 md:py-48 bg-white text-black overflow-hidden border-t border-black/5 [content-visibility:auto] [contain-intrinsic-size:800px]"
+      className="relative py-24 md:py-48 bg-white text-black overflow-hidden border-t border-black/5"
     >
       {/* Atmospheric Radial Blooms (Increased opacity for white background) */}
       <div className="absolute top-0 left-1/4 w-[40vw] h-[40vw] bg-neon-blue/15 rounded-full blur-[120px] pointer-events-none" />
@@ -87,7 +89,7 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         {/* Inventory Header (Standardized Heading) */}
         <div className="inventory-header mb-24 md:mb-32 flex flex-col gap-8">
-          <h2 className="font-black text-[clamp(2.5rem,10vw,8rem)] leading-[0.8] tracking-tighter uppercase text-black">
+          <h2 className="font-black text-[clamp(3rem,12vw,8rem)] leading-[0.8] tracking-tighter uppercase text-black">
             SERVICES
           </h2>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-t border-black/10 pt-8">

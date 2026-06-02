@@ -6,11 +6,16 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShinyButton } from "../ui/shiny-button";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Contact = () => {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     gsap.set(".contact-btn", { y: 40, opacity: 0 });
+    gsap.set(".c-lets", { x: -150, opacity: 0 });
+    gsap.set(".c-create", { x: 150, opacity: 0 });
+    gsap.set(".c-something", { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -41,11 +46,11 @@ const Contact = () => {
 
       <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/diagonal-stripes.png')]"></div>
       <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center relative z-10 overflow-hidden">
-        <h2 className="font-black text-[10vw] leading-[0.85] tracking-tighter uppercase mb-4 overflow-hidden">
-          <span className="c-lets inline-block translate-x-[-150px] opacity-0">LET'S</span> <span className="c-create inline-block translate-x-[150px] opacity-0 outline-text">CREATE</span>
+        <h2 className="font-black text-[clamp(3rem,12vw,8rem)] leading-[0.85] tracking-tighter uppercase mb-4 overflow-hidden">
+          <span className="c-lets inline-block">LET'S</span> <span className="c-create inline-block outline-text">CREATE</span>
         </h2>
-        <h2 className="font-black text-[10vw] leading-[0.85] tracking-tighter uppercase mb-16 overflow-hidden">
-          <span className="c-something inline-block translate-y-[50px] opacity-0">SOMETHING</span> <span className="c-cinematic inline-block text-neon-pink">CINEMATIC</span>
+        <h2 className="font-black text-[clamp(3rem,12vw,8rem)] leading-[0.85] tracking-tighter uppercase mb-16 overflow-hidden">
+          <span className="c-something inline-block">SOMETHING</span> <span className="c-cinematic inline-block text-neon-pink">CINEMATIC</span>
         </h2>
         <p className="text-3xl font-black uppercase tracking-tighter mb-16">
           Ready for the next digital evolution?

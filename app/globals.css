@@ -8,6 +8,8 @@
   --color-neon-gold: #ffd700;
   --color-surface: #111111;
 
+  --font-jedar: "Jedar";
+
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-rotate-cube: rotateCube 12s infinite linear;
@@ -32,6 +34,22 @@
   }
 }
 
+@font-face {
+  font-family: "Jedar";
+  src: url("/fonts/Jedar.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Jedar";
+  src: url("/fonts/Jedar.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #050505;
   --foreground: #ffffff;
@@ -41,6 +59,17 @@ body {
   background: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
+}
+
+h1,
+h2 {
+  font-family: "Jedar", sans-serif;
+  font-weight: bold;
+}
+
+.font-jedar {
+  font-family: "Jedar", sans-serif;
+  font-weight: bold;
 }
 
 .noise {
