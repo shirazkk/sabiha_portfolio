@@ -3,7 +3,6 @@
 import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Skills = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -58,7 +57,7 @@ const Skills = () => {
         <div className="space-y-20">
           <div>
             <h3 className="font-black text-xl text-neon-pink uppercase tracking-[0.3em] mb-12">
-              // CORE TECHNOLOGIES
+              {/* CORE TECHNOLOGIES */}
             </h3>
             <div className="flex flex-wrap gap-6">
               <span className="skill-pill bg-neon-pink text-white px-8 py-4 font-black text-2xl uppercase transform -rotate-2 hover:rotate-0 transition-all cursor-default inline-block rounded-sm">
@@ -82,7 +81,7 @@ const Skills = () => {
           <div className="flex flex-col md:flex-row gap-20">
             <div className="flex-1">
               <h3 className="font-black text-xl text-neon-blue uppercase tracking-[0.3em] mb-12">
-                // THE STACK
+                {/* THE STACK */}
               </h3>
               <div className="flex flex-wrap gap-4">
                 <span className="skill-pill border-4 border-white text-white px-6 py-3 font-black text-lg uppercase inline-block rounded-sm">
@@ -101,7 +100,7 @@ const Skills = () => {
             </div>
             <div className="flex-1">
               <h3 className="font-black text-xl text-neon-green uppercase tracking-[0.3em] mb-12">
-                // LANGUAGES
+                {/* LANGUAGES */}
               </h3>
               <div className="flex flex-wrap gap-4">
                 <span className="skill-pill bg-white text-black px-8 py-4 font-black text-xl uppercase inline-block rounded-sm">

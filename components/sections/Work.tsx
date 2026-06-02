@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect, useCallback, memo } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Volume2, VolumeX, Loader2 } from "lucide-react";
+import { Volume2, Loader2 } from "lucide-react";
 
 // Register ScrollTrigger plugin at module level (bundle-barrel-imports, bundle-preload)
 if (typeof window !== "undefined") {
