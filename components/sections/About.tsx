@@ -56,19 +56,19 @@ const About = () => {
             </div>
           </div>
           <div className="lg:col-span-5 grid grid-cols-1 gap-4">
-            <div className="about-stat bg-black text-white p-8 md:p-10 transform -rotate-3 hover:rotate-0 transition-all">
+            <div className="about-stat bg-black text-white p-8 md:p-10 transform -rotate-3 hover:rotate-0 transition-all rounded-sm">
               <div className="text-5xl md:text-7xl font-black text-neon-green mb-2">2+</div>
               <div className="font-black text-xs md:text-sm uppercase tracking-widest">
                 YEARS EXPERIENCE
               </div>
             </div>
-            <div className="about-stat bg-neon-pink text-white p-8 md:p-10 transform rotate-2 hover:rotate-0 transition-all">
+            <div className="about-stat bg-neon-pink text-white p-8 md:p-10 transform rotate-2 hover:rotate-0 transition-all rounded-sm">
               <div className="text-5xl md:text-7xl font-black text-white mb-2">10+</div>
               <div className="font-black text-xs md:text-sm uppercase tracking-widest">
                 PROJECTS COMPLETED
               </div>
             </div>
-            <div className="about-stat bg-neon-blue text-white p-8 md:p-10 transform -rotate-1 hover:rotate-0 transition-all">
+            <div className="about-stat bg-neon-blue text-white p-8 md:p-10 transform -rotate-1 hover:rotate-0 transition-all rounded-sm">
               <div className="text-5xl md:text-7xl font-black text-neon-gold mb-2">OPEN</div>
               <div className="font-black text-xs md:text-sm uppercase tracking-widest">
                 TO WORK

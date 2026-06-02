@@ -4,9 +4,20 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { Icon } from "@iconify/react";
+import { ShinyButton } from "../ui/shiny-button";
+import { useLenis } from "lenis/react";
 
 const Hero = () => {
   const container = useRef<HTMLDivElement>(null);
+  const lenis = useLenis();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.querySelector(targetId) as HTMLElement;
+    if (element && lenis) {
+      lenis.scrollTo(element, { duration: 1.5 });
+    }
+  };
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -34,27 +45,38 @@ const Hero = () => {
           <span className="hero-word-sabiha inline-block">SABIHA</span> <span className="hero-word-aamir text-neon-pink neon-text-pink inline-block">AAMIR</span>
         </h1>
         <p className="font-black text-sm md:text-2xl tracking-[0.2em] md:tracking-[0.3em] uppercase mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
-          <span className="hero-badge bg-neon-blue px-4 py-1 text-white inline-block">
+          <span className="hero-badge bg-neon-blue px-4 py-1 text-white inline-block rounded-sm">
             AI CONTENT CREATOR
           </span>
           <span className="hidden md:block">/</span>
-          <span className="hero-badge bg-neon-green px-4 py-1 text-black inline-block">
+          <span className="hero-badge bg-neon-green px-4 py-1 text-black inline-block rounded-sm">
             PROMPT ENGINEER
           </span>
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-6 px-4">
-          <a
-            href="#work"
-            className="hero-cta clash-gradient-1 px-8 md:px-12 py-4 md:py-5 font-black text-lg md:text-xl uppercase tracking-widest text-white shadow-[8px_8px_0px_#FFFFFF] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all inline-block"
-          >
-            VIEW WORK
-          </a>
-          <a
-            href="#contact"
-            className="hero-cta bg-white text-black px-8 md:px-12 py-4 md:py-5 font-black text-lg md:text-xl uppercase tracking-widest shadow-[8px_8px_0px_#FF1493] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all inline-block"
-          >
-            HIRE ME
-          </a>
+          <div className="hero-cta">
+            <ShinyButton
+              href="#work"
+              onClick={(e) => handleNavClick(e, "#work")}
+              className="!px-8 md:!px-12 !py-4 md:!py-5 !text-lg md:!text-xl !shadow-[8px_8px_0px_#FFFFFF] hover:!shadow-none"
+              highlightColor="#00FF00"
+              subtleColor="#FFFFFF"
+              bgColor="#0080FF"
+            >
+              VIEW WORK
+            </ShinyButton>
+          </div>
+          <div className="hero-cta">
+            <ShinyButton
+              href="#contact"
+              onClick={(e) => handleNavClick(e, "#contact")}
+              className="!px-8 md:!px-12 !py-4 md:!py-5 !text-lg md:!text-xl !shadow-[8px_8px_0px_#FF1493] hover:!shadow-none"
+              highlightColor="#FF1493"
+              subtleColor="#0080FF"
+            >
+              HIRE ME
+            </ShinyButton>
+          </div>
         </div>
       </div>
 

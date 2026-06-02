@@ -11,8 +11,8 @@ const EXPERIENCES = [
     date: "MAY 2026 – NOW",
     company: "ORGANIC AND PURE",
     role: "PROMPT ENGINEER",
-    color: "group-hover:text-neon-pink",
-    bgColor: "group-hover:bg-neon-pink",
+    color: "text-neon-pink",
+    bgColor: "bg-neon-pink",
     tasks: [
       "AI-Powered Commercial Production",
       "Emotional Marketing Scripts",
@@ -24,8 +24,8 @@ const EXPERIENCES = [
     date: "JAN 2026 – NOW",
     company: "SELF-EMPLOYED",
     role: "AI VIDEO EDITOR",
-    color: "group-hover:text-neon-blue",
-    bgColor: "group-hover:bg-neon-blue",
+    color: "text-neon-blue",
+    bgColor: "bg-neon-blue",
     tasks: [
       "Commercial AI-Generated Content",
       "Consistent Character Design",
@@ -108,7 +108,7 @@ const Experience = () => {
           {EXPERIENCES.map((exp, index) => (
             <div key={index} className="exp-block grid grid-cols-1 md:grid-cols-12 gap-12 group">
               <div className="md:col-span-4">
-                <div className={`bg-black text-white p-6 inline-block font-black text-xl uppercase mb-4 transition-colors ${exp.bgColor}`}>
+                <div className={`bg-black text-white p-6 inline-block font-black text-xl uppercase mb-4 transition-colors rounded-sm ${exp.bgColor}`}>
                   {exp.date}
                 </div>
                 <p className="font-black text-sm tracking-widest uppercase">

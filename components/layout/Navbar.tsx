@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { useLenis } from "lenis/react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { ShinyButton } from "../ui/shiny-button";
 
 const Navbar = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -35,7 +36,7 @@ const Navbar = () => {
     }
   }, [isOpen, lenis]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
     const element = document.querySelector(targetId) as HTMLElement;
     if (element && lenis) {
@@ -43,7 +44,7 @@ const Navbar = () => {
     }
   };
 
-  const handleMobileNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleMobileNavClick = (e: React.MouseEvent<HTMLElement>, targetId: string) => {
     e.preventDefault();
     setIsOpen(false);
     const element = document.querySelector(targetId) as HTMLElement;
@@ -139,13 +140,14 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             {/* Desktop Hire Me Button */}
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "#contact")}
-              className="hire-me-btn hidden md:inline-block bg-white text-black px-8 py-3 font-black text-sm uppercase tracking-widest hover:bg-neon-pink hover:text-white transition-all transform hover:-translate-y-1 active:translate-y-0"
-            >
-              HIRE ME
-            </a>
+            <div className="hidden md:block hire-me-btn">
+              <ShinyButton
+                href="#contact"
+                onClick={(e) => handleNavClick(e, "#contact")}
+              >
+                HIRE ME
+              </ShinyButton>
+            </div>
 
             {/* Mobile Hamburger Button */}
             <button
@@ -231,13 +233,13 @@ const Navbar = () => {
                   </a>
                 </motion.div>
                 <motion.div variants={linkVariants} className="pt-8">
-                  <a
+                  <ShinyButton
                     href="#contact"
                     onClick={(e) => handleMobileNavClick(e, "#contact")}
-                    className="w-full text-center block bg-white text-black px-8 py-5 font-black text-xl uppercase tracking-widest hover:bg-neon-pink hover:text-white transition-all transform hover:-translate-y-2 active:translate-y-0 shadow-[0_10px_20px_rgba(255,255,255,0.1)]"
+                    className="w-full py-5 text-xl"
                   >
                     HIRE ME
-                  </a>
+                  </ShinyButton>
                 </motion.div>
               </motion.div>
               

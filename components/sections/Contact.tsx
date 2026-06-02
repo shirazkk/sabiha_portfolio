@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ShinyButton } from "../ui/shiny-button";
 
 const Contact = () => {
   const container = useRef<HTMLDivElement>(null);
@@ -51,21 +52,29 @@ const Contact = () => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-8">
-          <a
-            href="mailto:sabihaaamir2@gmail.com"
-            aria-label="Send an email to Sabiha Aamir"
-            className="contact-btn bg-black text-white px-12 py-6 font-black text-2xl uppercase tracking-widest hover:bg-neon-pink transition-all transform hover:-translate-y-2 inline-block"
-          >
-            EMAIL ME
-          </a>
-          <a
-            href="https://linkedin.com/in/sabihaaamir"
-            target="_blank"
-            aria-label="Visit Sabiha Aamir's LinkedIn profile"
-            className="contact-btn border-8 border-black px-12 py-6 font-black text-2xl uppercase tracking-widest hover:bg-neon-blue hover:border-neon-blue hover:text-white transition-all transform hover:-translate-y-2 inline-block"
-          >
-            LINKEDIN
-          </a>
+          <div className="contact-btn">
+            <ShinyButton
+              href="mailto:sabihaaamir2@gmail.com"
+              ariaLabel="Send an email to Sabiha Aamir"
+              className="!px-12 !py-6 !text-2xl"
+              highlightColor="#FF007F" 
+            >
+              EMAIL ME
+            </ShinyButton>
+          </div>
+          <div className="contact-btn">
+            <ShinyButton
+              href="https://linkedin.com/in/sabihaaamir"
+              target="_blank"
+              ariaLabel="Visit Sabiha Aamir's LinkedIn profile"
+              className="!px-12 !py-6 !text-2xl !border-black/20"
+              bgColor="#FFFFFF"
+              fgColor="#000000"
+              highlightColor="#0080FF"
+            >
+              LINKEDIN
+            </ShinyButton>
+          </div>
         </div>
       </div>
     </section>

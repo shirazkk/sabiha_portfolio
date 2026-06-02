@@ -61,19 +61,19 @@ const Skills = () => {
               // CORE TECHNOLOGIES
             </h3>
             <div className="flex flex-wrap gap-6">
-              <span className="skill-pill bg-neon-pink text-white px-8 py-4 font-black text-2xl uppercase transform -rotate-2 hover:rotate-0 transition-all cursor-default inline-block">
+              <span className="skill-pill bg-neon-pink text-white px-8 py-4 font-black text-2xl uppercase transform -rotate-2 hover:rotate-0 transition-all cursor-default inline-block rounded-sm">
                 Prompt Engineering
               </span>
-              <span className="skill-pill bg-neon-blue text-white px-8 py-4 font-black text-2xl uppercase transform rotate-1 hover:rotate-0 transition-all cursor-default inline-block">
+              <span className="skill-pill bg-neon-blue text-white px-8 py-4 font-black text-2xl uppercase transform rotate-1 hover:rotate-0 transition-all cursor-default inline-block rounded-sm">
                 AI Video Gen
               </span>
-              <span className="skill-pill bg-neon-green text-black px-8 py-4 font-black text-2xl uppercase transform rotate-3 hover:rotate-0 transition-all cursor-default inline-block">
+              <span className="skill-pill bg-neon-green text-black px-8 py-4 font-black text-2xl uppercase transform rotate-3 hover:rotate-0 transition-all cursor-default inline-block rounded-sm">
                 Visual Storytelling
               </span>
-              <span className="skill-pill bg-white text-black px-8 py-4 font-black text-2xl uppercase transform -rotate-1 hover:rotate-0 transition-all cursor-default inline-block">
+              <span className="skill-pill bg-white text-black px-8 py-4 font-black text-2xl uppercase transform -rotate-1 hover:rotate-0 transition-all cursor-default inline-block rounded-sm">
                 AI Automation
               </span>
-              <span className="skill-pill bg-neon-gold text-black px-8 py-4 font-black text-2xl uppercase transform rotate-2 hover:rotate-0 transition-all cursor-default inline-block">
+              <span className="skill-pill bg-neon-gold text-black px-8 py-4 font-black text-2xl uppercase transform rotate-2 hover:rotate-0 transition-all cursor-default inline-block rounded-sm">
                 Hook-Based Edits
               </span>
             </div>
@@ -85,16 +85,16 @@ const Skills = () => {
                 // THE STACK
               </h3>
               <div className="flex flex-wrap gap-4">
-                <span className="skill-pill border-4 border-white text-white px-6 py-3 font-black text-lg uppercase inline-block">
+                <span className="skill-pill border-4 border-white text-white px-6 py-3 font-black text-lg uppercase inline-block rounded-sm">
                   ChatGPT
                 </span>
-                <span className="skill-pill border-4 border-neon-pink text-neon-pink px-6 py-3 font-black text-lg uppercase inline-block">
+                <span className="skill-pill border-4 border-neon-pink text-neon-pink px-6 py-3 font-black text-lg uppercase inline-block rounded-sm">
                   CapCut
                 </span>
-                <span className="skill-pill border-4 border-neon-green text-neon-green px-6 py-3 font-black text-lg uppercase inline-block">
+                <span className="skill-pill border-4 border-neon-green text-neon-green px-6 py-3 font-black text-lg uppercase inline-block rounded-sm">
                   Midjourney
                 </span>
-                <span className="skill-pill border-4 border-neon-gold text-neon-gold px-6 py-3 font-black text-lg uppercase inline-block">
+                <span className="skill-pill border-4 border-neon-gold text-neon-gold px-6 py-3 font-black text-lg uppercase inline-block rounded-sm">
                   Luma Dream
                 </span>
               </div>
@@ -104,10 +104,10 @@ const Skills = () => {
                 // LANGUAGES
               </h3>
               <div className="flex flex-wrap gap-4">
-                <span className="skill-pill bg-white text-black px-8 py-4 font-black text-xl uppercase inline-block">
+                <span className="skill-pill bg-white text-black px-8 py-4 font-black text-xl uppercase inline-block rounded-sm">
                   English — PRO
                 </span>
-                <span className="skill-pill bg-white text-black px-8 py-4 font-black text-xl uppercase inline-block">
+                <span className="skill-pill bg-white text-black px-8 py-4 font-black text-xl uppercase inline-block rounded-sm">
                   Urdu — NATIVE
                 </span>
               </div>

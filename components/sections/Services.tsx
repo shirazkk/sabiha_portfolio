@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ShinyButton } from "../ui/shiny-button";
 
 /* Hallmark · genre: atmospheric · macrostructure: Catalogue · theme: Midnight · enrichment: Tier A (CSS Bloom) */
 
@@ -135,12 +136,13 @@ const Services = () => {
 
               {/* Action */}
               <div className="lg:col-span-3 lg:justify-self-end w-full lg:w-auto mt-4 lg:mt-0">
-                <a
+                <ShinyButton
                   href="#contact"
-                  className="inline-block w-full lg:w-auto px-8 py-4 border border-black/10 font-black text-xs tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-all text-center"
+                  className="w-full lg:w-auto"
+                  highlightColor={tier.accent}
                 >
                   {tier.cta}
-                </a>
+                </ShinyButton>
               </div>
               
               {/* Row Glow Indicator - Hardware accelerated (js-batch-dom-css) */}

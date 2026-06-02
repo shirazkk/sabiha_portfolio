@@ -83,7 +83,7 @@ const Education = () => {
               <p className="text-xl font-bold text-gray-400 mb-8 uppercase tracking-tighter">
                 {edu.subtitle}
               </p>
-              <span className={`${edu.bgColor} text-white px-4 py-2 font-black text-sm uppercase`}>
+              <span className={`${edu.bgColor} text-white px-4 py-2 font-black text-sm uppercase rounded-sm`}>
                 {edu.period}
               </span>
             </div>
