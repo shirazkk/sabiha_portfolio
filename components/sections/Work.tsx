@@ -16,7 +16,8 @@ if (typeof window !== "undefined") {
 // Memoize individual cards
 const ProjectCard = memo(({ project }: { project: Project }) => {
   return (
-    <div className="group relative flex flex-col bg-surface/30 border border-white/5 hover:border-neon-pink/30 transition-all duration-500 overflow-hidden max-w-[260px] md:max-w-[320px] mx-auto w-full">
+    
+    <div className="group relative flex flex-col bg-surface border border-white/5 hover:border-neon-pink/30 transition-all duration-500 overflow-hidden max-w-[260px] md:max-w-[320px] mx-auto w-full">
       <div className="relative w-full bg-black aspect-[3/4]">
         <Image
           src={
@@ -90,9 +91,13 @@ const Work = () => {
     <section
       id="work"
       ref={container}
-      className="py-20 md:py-28 bg-base overflow-hidden border-t border-white/5"
+      className="py-20 md:py-28 bg-base relative overflow-hidden border-t border-white/5"
     >
-      <div className="max-w-6xl mx-auto px-6 lg:px-12">
+      {/* Atmospheric Radial Blooms */}
+      <div className="absolute top-0 right-1/4 w-[40vw] h-[40vw] bg-neon-pink/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[30vw] h-[30vw] bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="mb-12 md:mb-16">
           <h2 className="work-heading font-black text-[clamp(3rem,12vw,8rem)] leading-none tracking-tighter uppercase">
             WORK

@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="bg-black py-24 px-6 lg:px-12">
+    <footer className="bg-base py-24 px-6 lg:px-12">
       <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between border-t-4 border-white pt-12 gap-12">
         <div className="font-black text-4xl uppercase tracking-tighter">
           SABIHA <span className="text-neon-pink">AAMIR</span>
@@ -16,7 +16,7 @@ const Footer = () => {
           </a>
         </div>
         <div className="text-gray-500 font-bold uppercase tracking-widest">
-          © 2026 AI VISIONARY
+          © 2026 SABIHA AAMIR
         </div>
       </div>
     </footer>

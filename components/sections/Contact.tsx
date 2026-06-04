@@ -39,20 +39,23 @@ const Contact = () => {
   }, { scope: container });
 
   return (
-    <section id="contact" ref={container} className="py-48 bg-white text-black relative overflow-hidden">
+    <section id="contact" ref={container} className="py-48 bg-base text-white relative overflow-hidden border-t border-white/10">
       {/* Atmospheric Radial Blooms */}
       <div className="absolute top-0 right-1/4 w-[40vw] h-[40vw] bg-neon-pink/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-[30vw] h-[30vw] bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://www.transparenttextures.com/patterns/diagonal-stripes.png')]"></div>
+      {/* Texture Overlay */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: "repeating-linear-gradient(45deg, #ffffff 0, #ffffff 1px, transparent 0, transparent 10px)" }}>
+      </div>
       <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center relative z-10 overflow-hidden">
-        <h2 className="font-black text-[clamp(3rem,12vw,8rem)] leading-[0.85] tracking-tighter uppercase mb-4 overflow-hidden">
+        <h2 className="font-black text-[clamp(3rem,12vw,8rem)] leading-[0.85] tracking-tighter uppercase mb-4 overflow-hidden text-white">
           <span className="c-lets inline-block">LET&apos;S</span> <span className="c-create inline-block outline-text">CREATE</span>
         </h2>
         <h2 className="font-black text-[clamp(3rem,12vw,8rem)] leading-[0.85] tracking-tighter uppercase mb-16 overflow-hidden">
-          <span className="c-something inline-block">SOMETHING</span> <span className="c-cinematic inline-block text-neon-pink">CINEMATIC</span>
+          <span className="c-something inline-block text-white">SOMETHING</span> <span className="c-cinematic inline-block text-neon-pink">CINEMATIC</span>
         </h2>
-        <p className="text-3xl font-black uppercase tracking-tighter mb-16">
+        <p className="text-3xl font-black uppercase tracking-tighter mb-16 text-white">
           Ready for the next digital evolution?
         </p>
 
@@ -72,9 +75,9 @@ const Contact = () => {
               href="https://linkedin.com/in/sabihaaamir"
               target="_blank"
               ariaLabel="Visit Sabiha Aamir's LinkedIn profile"
-              className="!px-12 !py-6 !text-2xl !border-black/20"
-              bgColor="#FFFFFF"
-              fgColor="#000000"
+              className="!px-12 !py-6 !text-2xl !border-white/20"
+              bgColor="#111111"
+              fgColor="#FFFFFF"
               highlightColor="#0080FF"
             >
               LINKEDIN

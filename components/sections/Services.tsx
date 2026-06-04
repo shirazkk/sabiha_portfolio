@@ -13,7 +13,7 @@ const SERVICE_TIERS = [
     title: "FREELANCE PRODUCTION",
     focus: "SINGLE PROJECTS",
     items: ["AI VIDEO", "REELS", "CAPTIONS", "HOOK EDITS"],
-    accent: "var(--color-neon-pink)",
+    accent: "#FF1493",
     cta: "BOOK PROJECT"
   },
   {
@@ -21,7 +21,7 @@ const SERVICE_TIERS = [
     title: "FULL SERVICE STUDIO",
     focus: "COMPLETE PRODUCTION",
     items: ["AI PRODUCTION", "AD SCRIPTS", "BRAND IDENTITY", "AUTOMATION", "STRATEGY"],
-    accent: "var(--color-neon-green)",
+    accent: "#00FF00",
     cta: "GET FULL ACCESS"
   },
   {
@@ -29,7 +29,7 @@ const SERVICE_TIERS = [
     title: "BRAND PARTNERSHIPS",
     focus: "COLLABORATIONS",
     items: ["AD SCRIPTS", "INFLUENCER SYSTEMS", "BRANDED CONTENT"],
-    accent: "var(--color-neon-blue)",
+    accent: "#0080FF",
     cta: "PARTNER UP"
   }
 ];
@@ -80,23 +80,23 @@ const Services = () => {
     <section 
       id="services" 
       ref={container} 
-      className="relative py-24 md:py-48 bg-white text-black overflow-hidden border-t border-black/5"
+      className="relative py-24 md:py-48 bg-base text-white overflow-hidden border-t border-white/10"
     >
-      {/* Atmospheric Radial Blooms (Increased opacity for white background) */}
-      <div className="absolute top-0 left-1/4 w-[40vw] h-[40vw] bg-neon-blue/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[30vw] h-[30vw] bg-neon-pink/15 rounded-full blur-[100px] pointer-events-none" />
+      {/* Atmospheric Radial Blooms */}
+      <div className="absolute top-0 left-1/4 w-[40vw] h-[40vw] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[30vw] h-[30vw] bg-neon-pink/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         {/* Inventory Header (Standardized Heading) */}
         <div className="inventory-header mb-24 md:mb-32 flex flex-col gap-8">
-          <h2 className="font-black text-[clamp(3rem,12vw,8rem)] leading-[0.8] tracking-tighter uppercase text-black">
+          <h2 className="font-black text-[clamp(3rem,12vw,8rem)] leading-[0.8] tracking-tighter uppercase text-white">
             SERVICES
           </h2>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-t border-black/10 pt-8">
-            <p className="text-sm md:text-lg text-zinc-600 font-medium max-w-xl uppercase tracking-wider leading-tight">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-t border-white/10 pt-8">
+            <p className="text-sm md:text-lg text-white font-medium max-w-xl uppercase tracking-wider leading-tight">
               PREMIUM AI PRODUCTION FOR BRANDS AND CREATORS READY TO LEAD THE NEXT MEDIA SHIFT.
             </p>
-            <div className="text-[10px] tracking-[0.3em] font-black text-black/20 uppercase">
+            <div className="text-[10px] tracking-[0.3em] font-black text-white/50 uppercase">
               CAPABILITIES · 2026
             </div>
           </div>
@@ -107,11 +107,11 @@ const Services = () => {
           {SERVICE_TIERS.map((tier) => (
             <div 
               key={tier.id} 
-              className="service-row group border-b border-black/10 py-12 md:py-20 flex flex-col lg:grid lg:grid-cols-12 gap-8 items-start relative transition-all hover:bg-black/[0.02]"
+              className="service-row group border-b border-white/10 py-12 md:py-20 flex flex-col lg:grid lg:grid-cols-12 gap-8 items-start relative transition-all hover:bg-white/[0.02]"
             >
               {/* Row Index */}
               <div className="lg:col-span-1">
-                <span className="font-mono text-sm text-black/30">{tier.id}</span>
+                <span className="font-mono text-sm text-white/50">{tier.id}</span>
               </div>
 
               {/* Title & Category */}
@@ -122,7 +122,7 @@ const Services = () => {
                 >
                   {tier.focus}
                 </span>
-                <h3 className="text-3xl md:text-5xl font-black tracking-tighter uppercase text-black group-hover:translate-x-2 transition-transform duration-500">
+                <h3 className="text-3xl md:text-5xl font-black tracking-tighter uppercase text-white group-hover:translate-x-2 transition-transform duration-500">
                   {tier.title}
                 </h3>
               </div>
@@ -130,7 +130,7 @@ const Services = () => {
               {/* List of Details (Tabular Spec) */}
               <div className="lg:col-span-4 flex flex-wrap gap-x-6 gap-y-2">
                 {tier.items.map((item, i) => (
-                  <span key={i} className="text-sm md:text-base font-bold text-zinc-600 uppercase tracking-tight">
+                  <span key={i} className="text-sm  font-bold text-white/50 uppercase tracking-tight">
                     — {item}
                   </span>
                 ))}
@@ -147,7 +147,7 @@ const Services = () => {
                 </ShinyButton>
               </div>
               
-              {/* Row Glow Indicator - Hardware accelerated (js-batch-dom-css) */}
+              {/* Row Glow Indicator */}
               <div 
                 className="absolute left-0 top-0 bottom-0 w-[2px] opacity-0 group-hover:opacity-100 transition-opacity translate-z-0"
                 style={{ backgroundColor: tier.accent, boxShadow: `0 0 15px ${tier.accent}` }}
@@ -157,7 +157,7 @@ const Services = () => {
         </div>
 
         {/* Footer Note */}
-        <div className="mt-16 text-[10px] tracking-[0.2em] font-medium text-black/20 uppercase text-center md:text-left">
+        <div className="mt-16 text-[10px] tracking-[0.2em] font-medium text-white/50 uppercase text-center md:text-left">
           AVAILABLE FOR GLOBAL REMOTE ENGAGEMENTS · INQUIRE FOR CUSTOM SYSTEMS
         </div>
       </div>

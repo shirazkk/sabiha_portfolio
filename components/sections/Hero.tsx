@@ -77,11 +77,11 @@ const Hero = () => {
   return (
     <section
       ref={container}
-      className="relative w-full min-h-dvh flex flex-col items-center justify-center overflow-hidden bg-black"
+      className="relative w-full min-h-dvh flex flex-col items-center justify-center overflow-hidden "
     >
-      {/* Background Glows - pointer-events-none ensures they don't block button clicks */}
-      <div className="absolute inset-y-0 right-0 w-[60vw] bg-neon-pink opacity-10 blur-[150px] md:blur-[180px] pointer-events-none" />
-      <div className="absolute inset-y-0 left-0 w-[60vw] bg-neon-blue opacity-10 blur-[150px] md:blur-[180px] pointer-events-none" />
+      {/* Atmospheric Radial Blooms */}
+      <div className="absolute top-0 right-1/4 w-[40vw] h-[40vw] bg-neon-pink/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[30vw] h-[30vw] bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-30 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

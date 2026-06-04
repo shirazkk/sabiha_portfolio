@@ -46,8 +46,12 @@ return (
   <section 
     id="education" 
     ref={container} 
-    className="py-32 bg-base relative overflow-hidden"
+    className="py-32 bg-base relative overflow-hidden border-t border-white/10"
   >
+    {/* Atmospheric Radial Blooms */}
+    <div className="absolute top-0 right-1/4 w-[40vw] h-[40vw] bg-neon-pink/10 rounded-full blur-[120px] pointer-events-none" />
+    <div className="absolute bottom-0 left-1/4 w-[30vw] h-[30vw] bg-neon-blue/10 rounded-full blur-[100px] pointer-events-none" />
+
     <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
       <h2 className="edu-heading font-black text-[clamp(3rem,12vw,8rem)] leading-none tracking-tighter uppercase mb-24 text-white">
         EDUCATION

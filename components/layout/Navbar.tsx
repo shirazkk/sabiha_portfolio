@@ -213,7 +213,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Sidebar Overlay */}
+      {/* Mobile Fullscreen Menu */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -274,23 +274,29 @@ const Navbar = () => {
                     CONTACT
                   </a>
                 </motion.div>
+
                 <motion.div variants={linkVariants} className="pt-8">
                   <ShinyButton
                     href="#contact"
                     onClick={(e) => handleMobileNavClick(e, "#contact")}
-                    className="w-full py-5 text-xl"
+                    className="w-full text-xl py-6"
                   >
                     HIRE ME
                   </ShinyButton>
                 </motion.div>
               </motion.div>
 
-              {/* Footer info in sidebar */}
+              {/* Bottom Details */}
               <motion.div
-                variants={linkVariants}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
                 className="absolute bottom-12 left-8 right-8 border-t border-white/10 pt-8"
               >
-                <p className="text-zinc-500 font-bold text-xs tracking-widest uppercase">
+                <p className="text-neon-pink font-bold text-xs tracking-widest mb-2 uppercase">
+                  Available for Projects
+                </p>
+                <p className="text-zinc-500 font-medium text-xs tracking-widest uppercase">
                   Let&apos;s create something extraordinary
                 </p>
               </motion.div>

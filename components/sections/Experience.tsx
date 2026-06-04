@@ -92,7 +92,7 @@ const Experience = () => {
     <section 
       id="experience" 
       ref={container} 
-      className="relative py-32 bg-white text-black overflow-hidden border-t border-black/5"
+      className="relative py-20 md:py-32 bg-base text-white overflow-hidden border-t border-white/10"
     >
       {/* Atmospheric Radial Blooms */}
       <div className="absolute top-0 left-1/4 w-[40vw] h-[40vw] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none" />
@@ -106,7 +106,7 @@ const Experience = () => {
           {EXPERIENCES.map((exp, index) => (
             <div key={index} className="exp-block grid grid-cols-1 md:grid-cols-12 gap-12 group">
               <div className="md:col-span-4">
-                <div className={`bg-black text-white p-6 inline-block font-black text-xl uppercase mb-4 transition-colors rounded-sm ${exp.bgColor}`}>
+                <div className={` text-white p-6 inline-block font-black text-xl uppercase mb-4 transition-colors rounded-sm border border-white/5 ${exp.bgColor}`}>
                   {exp.date}
                 </div>
                 <p className="font-black text-sm tracking-widest uppercase">

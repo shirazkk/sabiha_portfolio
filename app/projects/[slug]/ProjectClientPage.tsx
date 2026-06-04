@@ -300,7 +300,7 @@ export default function ProjectClientPage({ project }: { project: Project }) {
                 {project.techStack.map((tech: string) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-black border border-white/10 rounded text-xs font-bold uppercase tracking-wide text-zinc-300 hover:border-neon-blue/40 hover:text-neon-blue transition-colors"
+                    className="px-3 py-1 bg-black border border-white/10 rounded text-xs font-black uppercase tracking-wide text-zinc-300 hover:border-neon-blue/40 hover:text-neon-blue transition-colors"
                   >
                     {tech}
                   </span>
@@ -318,8 +318,6 @@ export default function ProjectClientPage({ project }: { project: Project }) {
               </p>
               <ShinyButton
                 href="/#contact"
-              
-                fgColor="#000000"
                 className="w-full justify-center text-xs font-black text-white! uppercase tracking-widest"
               >
                 Hire Me
@@ -332,7 +330,7 @@ export default function ProjectClientPage({ project }: { project: Project }) {
       {/* Footer Bar */}
       <div className="border-t border-white/5 mt-24 px-6 md:px-12 py-6 flex items-center justify-between">
         <span className="text-xs font-bold uppercase tracking-widest text-white">
-          Sabiha Aamir
+          SABIHA AAMIR — 2026
         </span>
         <Link
           href="/#work"

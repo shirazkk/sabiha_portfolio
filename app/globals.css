@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-base: #050505;
+  --color-base: oklch(14% 0.01 260);
   --color-neon-pink: #ff1493;
   --color-neon-blue: #0080ff;
   --color-neon-green: #00ff00;
@@ -51,7 +51,7 @@
 }
 
 :root {
-  --background: #050505;
+  --background: var(--color-base);
   --foreground: #ffffff;
 }
 
@@ -161,7 +161,7 @@ h2 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050505;
+  background: var(--color-base);
 }
 
 ::-webkit-scrollbar-thumb {
