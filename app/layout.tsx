@@ -1,18 +1,26 @@
-"use client";
-
 import "./globals.css";
-import SmoothScroll from "@/components/ui/SmoothScroll";
-import Cursor from "@/components/ui/Cursor";
-import { Preloader } from "@/components/ui/Preloader";
-import {
-  LoadingProvider,
-  useLoading,
-} from "@/components/context/LoadingContext";
+import localFont from "next/font/local";
+import ClientWrapper from "@/components/layout/ClientWrapper";
+import { Metadata } from "next";
 
-function PreloaderManager() {
-  const { loaded, setLoaded } = useLoading();
-  return !loaded ? <Preloader onComplete={() => setLoaded(true)} /> : null;
-}
+const jedar = localFont({
+  src: "../public/fonts/Jedar.ttf",
+  variable: "--font-jedar",
+});
+
+export const metadata: Metadata = {
+  title: "Sabiha Aamir | AI Content Creator & Prompt Engineer",
+  description: "Portfolio of Sabiha Aamir, showcasing expertise in AI content creation, prompt engineering, and cinematic web design.",
+  metadataBase: new URL("https://sabihaaamir.vercel.app"),
+  openGraph: {
+    title: "Sabiha Aamir | AI Content Creator & Prompt Engineer",
+    description: "Portfolio of Sabiha Aamir, showcasing expertise in AI content creation, prompt engineering, and cinematic web design.",
+    url: "/",
+    siteName: "Sabiha Aamir Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -20,32 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-      </head>
-      <body className="antialiased bg-base text-white cursor-none overflow-x-hidden">
-        <LoadingProvider>
-          <PreloaderManager />
-          <Cursor />
-          <div className="noise" />
-          <SmoothScroll>
-            <MainContent>{children}</MainContent>
-          </SmoothScroll>
-        </LoadingProvider>
+    <html lang="en" className={jedar.variable}>
+      <body className="antialiased bg-base text-white cursor-none overflow-x-hidden font-sans">
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
-  );
-}
-
-function MainContent({ children }: { children: React.ReactNode }) {
-  const { loaded } = useLoading();
-  return (
-    <main
-      className={`overflow-x-hidden w-full transition-opacity duration-1000 ${loaded ? "opacity-100" : "opacity-0"}`}
-    >
-      {children}
-    </main>
   );
 }

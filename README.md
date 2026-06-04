@@ -25,7 +25,7 @@ I bridge the gap between raw code and visual storytelling to build cinematic dig
 - **Raw to Final Edit**: Unedited raw footage transformed into a scroll-stopping final edit with color grading and motion.
 
 ## 📬 Contact
-- **Portfolio:** [sabiha-aamir-portfolio.vercel.app](https://sabiha-swart.vercel.app)
+- **Portfolio:** [sabihaaamir.vercel.app](https://sabihaaamir.vercel.app)
 - **Email:** [sabihaaamir2@gmail.com](mailto:sabihaaamir2@gmail.com)
 - **LinkedIn:** [linkedin.com/in/sabihaaamir](https://linkedin.com/in/sabihaaamir)
 
