@@ -8,7 +8,8 @@
   --color-neon-gold: #ffd700;
   --color-surface: #111111;
 
-  --font-jedar: "Jedar";
+  --font-poppins: var(--font-poppins);
+  --font-sans: var(--font-poppins);
 
   --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-float: float 6s ease-in-out infinite;
@@ -34,22 +35,6 @@
   }
 }
 
-@font-face {
-  font-family: "Jedar";
-  src: url("/fonts/Jedar.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Jedar";
-  src: url("/fonts/Jedar.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --background: var(--color-base);
   --foreground: #ffffff;
@@ -63,12 +48,7 @@ body {
 
 h1,
 h2 {
-  font-family: "Jedar", sans-serif;
-  font-weight: bold;
-}
-
-.font-jedar {
-  font-family: "Jedar", sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-weight: bold;
 }
 

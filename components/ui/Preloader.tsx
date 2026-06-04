@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 
@@ -54,11 +54,11 @@ export const Preloader = ({ onComplete }: { onComplete: () => void }) => {
       <div className="pl-content opacity-0 translate-y-2 z-30 text-center flex flex-col items-center gap-3">
         <p className="text-[10px] tracking-[0.35em] text-white/30 uppercase">Portfolio — 2026</p>
         <div className="flex flex-col items-center gap-1">
-          <h1 className="font-jedar text-5xl md:text-7xl text-white tracking-[0.18em] uppercase leading-none">
+          <h1 className="text-5xl md:text-7xl text-white tracking-[0.18em] uppercase leading-none">
             Sabiha
           </h1>
           <div className="w-10 h-px bg-white/20" />
-          <h1 className="font-jedar text-5xl md:text-7xl text-white tracking-[0.18em] uppercase leading-none">
+          <h1 className="text-5xl md:text-7xl text-white tracking-[0.18em] uppercase leading-none">
             Aamir
           </h1>
         </div>

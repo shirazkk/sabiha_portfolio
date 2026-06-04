@@ -143,7 +143,7 @@ const Navbar = () => {
             }}
           >
             <span className="font-black text-2xl tracking-tighter uppercase leading-none">
-              SABIHA <span className="text-neon-pink">AAMIR</span> 
+              SABIHA <span className="text-neon-pink">AAMIR</span>
             </span>
             <span className="w-4 h-4 rounded-full bg-neon-green animate-pulse shadow-[0_0_15px_#00FF00]"></span>
           </div>
@@ -165,18 +165,18 @@ const Navbar = () => {
               WORK
             </a>
             <a
+              href="#experience"
+              onClick={(e) => handleNavClick(e, "#experience")}
+              className="nav-link hover:text-neon-gold transition-all duration-300"
+            >
+              EXPERIENCE
+            </a>
+            <a
               href="#skills"
               onClick={(e) => handleNavClick(e, "#skills")}
               className="nav-link hover:text-neon-green transition-all duration-300"
             >
               SKILLS
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "#contact")}
-              className="nav-link hover:text-neon-gold transition-all duration-300"
-            >
-              CONTACT
             </a>
           </div>
 

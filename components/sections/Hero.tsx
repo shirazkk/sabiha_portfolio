@@ -85,7 +85,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-30 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="font-jedar text-[clamp(2.5rem,12vw,10rem)] leading-[0.85] tracking-tighter uppercase mb-6">
+        <h1 className="text-[clamp(2.5rem,12vw,10rem)] leading-[0.85] tracking-tighter uppercase mb-6">
           <span className="hero-word-sabiha inline-block">SABIHA</span>{" "}
           <span className="hero-word-aamir text-neon-pink neon-text-pink inline-block">
             AAMIR
@@ -120,13 +120,13 @@ const Hero = () => {
 
           <div className="hero-cta">
             <ShinyButton
-              href="#contact"
-              onClick={(e) => handleNavClick(e, "#contact")}
+              href="#services"
+              onClick={(e) => handleNavClick(e, "#services")}
               className="!px-4 sm:!px-6 md:!px-12 !py-3 md:!py-5 !text-xs sm:!text-base md:!text-xl !shadow-[4px_4px_0px_#FF1493] md:!shadow-[8px_8px_0px_#FF1493] hover:!shadow-none"
               highlightColor="#FF1493"
               subtleColor="#0080FF"
             >
-              <span className="text-white">HIRE ME</span>
+              <span className="text-white">SERVICES</span>
             </ShinyButton>
           </div>
         </div>
@@ -137,7 +137,10 @@ const Hero = () => {
         <span className="font-black text-[10px] md:text-xs tracking-widest uppercase text-neon-gold">
           SCROLL DOWN
         </span>
-        <Icon icon="lucide:arrow-down" className="text-xl md:text-2xl text-neon-gold" />
+        <Icon
+          icon="lucide:arrow-down"
+          className="text-xl md:text-2xl text-neon-gold"
+        />
       </div>
     </section>
   );

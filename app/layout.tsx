@@ -1,11 +1,12 @@
 import "./globals.css";
-import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import ClientWrapper from "@/components/layout/ClientWrapper";
 import { Metadata } from "next";
 
-const jedar = localFont({
-  src: "../public/fonts/Jedar.ttf",
-  variable: "--font-jedar",
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={jedar.variable}>
+    <html lang="en" className={poppins.variable}>
       <body className="antialiased bg-base text-white cursor-none overflow-x-hidden font-sans">
         <ClientWrapper>{children}</ClientWrapper>
       </body>
