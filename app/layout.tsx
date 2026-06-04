@@ -11,11 +11,13 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Sabiha Aamir | AI Content Creator & Prompt Engineer",
-  description: "Portfolio of Sabiha Aamir, showcasing expertise in AI content creation, prompt engineering, and cinematic web design.",
+  description:
+    "Portfolio of Sabiha Aamir, showcasing expertise in AI content creation, prompt engineering, and cinematic web design.",
   metadataBase: new URL("https://sabihaaamir.vercel.app"),
   openGraph: {
     title: "Sabiha Aamir | AI Content Creator & Prompt Engineer",
-    description: "Portfolio of Sabiha Aamir, showcasing expertise in AI content creation, prompt engineering, and cinematic web design.",
+    description:
+      "Portfolio of Sabiha Aamir, showcasing expertise in AI content creation, prompt engineering, and cinematic web design.",
     url: "/",
     siteName: "Sabiha Aamir Portfolio",
     locale: "en_US",
@@ -30,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="antialiased bg-base text-white cursor-none overflow-x-hidden font-sans">
+      <body className="antialiased cursor-none overflow-x-hidden ">
         <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
